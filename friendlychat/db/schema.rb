@@ -13,12 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20150111180802) do
 
-  create_table "chats", force: true do |t|
-    t.text     "content"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "messages", force: true do |t|
     t.string   "content"
     t.datetime "created_at"
