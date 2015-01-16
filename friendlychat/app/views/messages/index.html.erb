@@ -1,17 +1,60 @@
 
 <%= subscribe_to "/messages/new/"+ @usernumber.to_s %>
-<div id="Header">
+<!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                        Friendly Chat
+                    </a>
+                </li>
+                <li>
+                    <a href="#">Dashboard</a>
+                </li>
+                <li>
+                    <a href="#">Shortcuts</a>
+                </li>
+                <li>
+                    <a href="#">Overview</a>
+                </li>
+                <li>
+                    <a href="#">Events</a>
+                </li>
+                <li>
+                    <a href="#">About</a>
+                </li>
+                <li>
+                    <a href="#">Services</a>
+                </li>
+                <li>
+                    <a href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+<div class="container">
+	<div class="panel panel-default">
+	  <div class="panel-heading">Your Chat:</div>
+	  <div class="panel-body">
+	    <ul id="chat">
+			 <% unless @messages.blank? %>
+			 	<%= render @messages %>
+			<%end%>
+		</ul>
+	  </div>
+	</div>
+
+
+	<%= form_for Message.new, remote: true do |f| %>
+	  <%= f.text_field :content %>
+	  <%= f.submit "Send" %>
+	<% end %>
 </div>
 
-<h1>Chat</h1>
 
-<ul id="chat">
-  <% unless @messages.blank? %>
- <%= render @messages %>
-<%end%>
-</ul>
-
-<%= form_for Message.new, remote: true do |f| %>
-  <%= f.text_field :content %>
-  <%= f.submit "Send" %>
-<% end %>
+<div class="mastfoot center">
+	<div class="inner">
+		<p>This was made by <a href="https://www.twitter.com/robertwildman">robertwildman</a>.</p>
+	</div>
+</div>
