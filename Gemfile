@@ -28,6 +28,7 @@ gem 'spring',        group: :development
 gem "private_pub"
 gem 'thin'
 gem 'pg'
+gem 'faye'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
