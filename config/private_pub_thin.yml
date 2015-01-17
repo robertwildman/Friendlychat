@@ -1,7 +1,0 @@
-port: 4443
-ssl: true
-ssl_verify_mode :verify_peer
-ssl_key_file: /home/app/cert/server.key
-ssl_cert_file: /home/app/cert/server.pem
-environment: production
-rackup: private_pub.ru
