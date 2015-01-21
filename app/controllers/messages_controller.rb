@@ -1,6 +1,5 @@
 class MessagesController < ApplicationController
  def index
- 	Message.delete_all
  	@usernumber = 12
     @messages = Message.all
   end
