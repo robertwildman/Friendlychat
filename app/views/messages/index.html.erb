@@ -3,38 +3,39 @@
 <!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
-                <li class="sidebar-brand">
+                <li class="sidebar-brand Title">
                     <a href="#">
                         Helping Chat
                     </a>
                 </li>
-                <li>
-                    <a href="#">Dashboard</a>
+                <li class="Head1">
+                    <a data-toggle="collapse" data-target="#yourinfo"href="#">Your info</a>
+                    <p class="collapse" id="yourinfo">
+                        This is where your info will be! </p>
                 </li>
-                <li>
-                    <a href="#">Shortcuts</a>
+                <li class="Head2">
+                    <a data-toggle="collapse" data-target="#theirinfo"href="#">Their info</a>
+                    <p class="collapse" id="theirinfo">
+                        This is where their info will be! </p>
                 </li>
-                <li>
-                    <a href="#">Overview</a>
+                <li class="Head3">
+                    <a href="#">Helplines</a>
                 </li>
-                <li>
-                    <a href="#">Events</a>
+                <li class="Head4">
+                    <a href="#">Rules</a>
                 </li>
-                <li>
-                    <a href="#">About</a>
+                 <li class="Head5">
+                    <a href="#">Other Website to help</a>
                 </li>
-                <li>
-                    <a href="#">Services</a>
-                </li>
-                <li>
-                    <a href="#">Contact</a>
+                <li class="Head6">
+                    <a href="#">About us</a>
                 </li>
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
 
 <div class="container">
-	<div class="panel panel-default">
+	<div class="panel panel-default chat-panel">
 	  <div class="panel-heading">Your Chat:</div>
 	  <div class="panel-body">
 	    <ul id="chat">
@@ -43,18 +44,13 @@
 			<%end%>
 		</ul>
 	  </div>
+      <div class="panel-footer">
+          <div class= "footer_inner center">
+              <%= form_for Message.new, :html => {:class => 'center'}, remote: true do |f| %>
+                  <%= f.text_field :content, :class => 'message_input'%>
+                  <%= f.submit "Send", :class => 'message_button' %>
+                <% end %>
+          </div>
+      </div>
 	</div>
 
-
-	<%= form_for Message.new, remote: true do |f| %>
-	  <%= f.text_field :content %>
-	  <%= f.submit "Send" %>
-	<% end %>
-</div>
-
-
-<div class="mastfoot center">
-	<div class="inner">
-		<p>This was made by <a href="https://www.twitter.com/robertwildman">robertwildman</a>.</p>
-	</div>
-</div>
