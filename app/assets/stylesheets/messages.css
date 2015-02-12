@@ -11,16 +11,16 @@
 {
     width:100%;
     height:100%;
-
+    float:left;
     padding-left: 0px;
 }
 body
 {
-    background-color: #4dc9ff;
+    background-color: #C7D0D5;
 }
 #yourinfo
 {
-    color:#fff;
+    color:#333;
 }
 #theirinfo
 {
@@ -92,7 +92,14 @@ body
     color: #fff;
 }
 
-
+.heads
+{
+    background-color: #FF7148;
+}
+.heads a
+{
+    color: #333;
+}
 
 
 
@@ -101,65 +108,11 @@ body
 
 .Title
 {
-    background-color: #d5544f;
+    background-color: #FF7148;
 }
 .Title a
 {
     color:#333;
-}
-
-.Head1
-{
-    background-color: #d5544f;
-}
-.Head1 a
-{
-    color: #333;
-}
-
-.Head2
-{
-    background-color: #d5544f;
-}
-.Head2 a
-{
-    color: #333;
-}
-
-.Head3
-{
-    background-color: #d5544f;
-}
-.Head3 a
-{
-    color: #333;
-}
-
-.Head4
-{
-    background-color: #d5544f;
-}
-.Head4 a
-{
-    color: #333;
-}
-
-.Head5
-{
-    background-color: #d5544f;
-}
-.Head5 a
-{
-    color: #333;
-}
-
-.Head6
-{
-    background-color: #d5544f;
-}
-.Head6 a
-{
-    color: #333;
 }
 .panel-body
 {
@@ -184,18 +137,10 @@ body
     margin: 0 auto;
     float:none;
 }
-
-
-
-
-
-
-
-
-
-
-
-
+.collapsing {
+    -webkit-transition: none;
+    transition: none;
+}
 
 
 #wrapper {
@@ -218,7 +163,6 @@ body
     height: 100%;
     margin-left: -250px;
     overflow-y: auto;
-    background: #4dc9ff;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -243,7 +187,7 @@ body
 /* Sidebar Styles */
 
 .sidebar-nav {
-    position: absolute;
+    float:left;
     top: 0;
     width: 250px;
     margin: 0;
@@ -275,6 +219,10 @@ body
     font-size: 18px;
     line-height: 60px;
 }
+.adsbygoogle
+{
+    width:80%;
+}
 
 
 
@@ -287,9 +235,15 @@ body
 {
     width: 50px;
 }
+.adsbygoogle
+{
+    width:100%;
+}
+
+
     .container
     {
-    padding-left: 220px;
+    padding-left: 250px;
     }
     #wrapper {
         padding-left: 250px;
@@ -300,7 +254,9 @@ body
     }
 
     #sidebar-wrapper {
-        width: 250px;
+    max-height: 100%;
+    margin-top: -100px;
+    width:250px;
     }
 
     #wrapper.toggled #sidebar-wrapper {

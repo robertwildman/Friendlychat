@@ -1,56 +1,77 @@
+<%= subscribe_to @roomaddress %>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<%= javascript_include_tag "http://localhost:9292/faye.js" %>
+<!-- Main_Page -->
+<ins class="adsbygoogle"
+     style="display:block; width:80%;float:right;height:90px;"
+     data-ad-client="ca-pub-2049126681125303"
+     data-ad-slot="9104544471"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<script type="text/javascript" charset="utf-8">
+  PrivatePub.subscribe("<%= @roomaddress %>", function(data) {
+    $('<li></li>').html(data.username + ": " + data.msg).appendTo('#chat');
+  });
 
-<%= subscribe_to "/messages/new/"+ @usernumber.to_s %>
+</script>
+<div class="container">
 <!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
-                <li class="sidebar-brand Title">
+                <li class="sidebar-brand Title heads">
                     <a href="#">
                         Helping Chat
                     </a>
                 </li>
-                <li class="Head1">
+                <li class="Head1 heads">
                     <a data-toggle="collapse" data-target="#yourinfo"href="#">Your info</a>
                     <p class="collapse" id="yourinfo">
                         This is where your info will be! </p>
                 </li>
-                <li class="Head2">
+                <li class="Head2 heads">
                     <a data-toggle="collapse" data-target="#theirinfo"href="#">Their info</a>
                     <p class="collapse" id="theirinfo">
                         This is where their info will be! </p>
                 </li>
-                <li class="Head3">
+                <li class="Head3 heads">
                     <a href="#">Helplines</a>
                 </li>
-                <li class="Head4">
+                <li class="Head4 heads">
                     <a href="#">Rules</a>
                 </li>
-                 <li class="Head5">
+                 <li class="Head5 heads">
                     <a href="#">Other Website to help</a>
                 </li>
-                <li class="Head6">
+                <li class="Head6 heads">
                     <a href="#">About us</a>
                 </li>
             </ul>
         </div>
-        <!-- /#sidebar-wrapper -->
+<!-- /#sidebar-wrapper -->
 
-<div class="container">
 	<div class="panel panel-default chat-panel">
 	  <div class="panel-heading">Your Chat:</div>
 	  <div class="panel-body">
 	    <ul id="chat">
-			 <% unless @messages.blank? %>
-			 	<%= render @messages %>
-			<%end%>
-		</ul>
+        <li>
+          <p>User id is <%= @user_id %> </p>
+        </li>
+        <li>
+          <p>Room id is <%= @roomaddress %> </p>
+        </li>
+        <%= @output%>
+        <%= @error%>
+		  </ul>
 	  </div>
       <div class="panel-footer">
           <div class= "footer_inner center">
-              <%= form_for Message.new, :html => {:class => 'center'}, remote: true do |f| %>
-                  <%= f.text_field :content, :class => 'message_input'%>
-                  <%= f.submit "Send", :class => 'message_button' %>
-                <% end %>
+              <%= form_tag new_message_path, :remote => true do %>
+                <%= text_field_tag :message %>
+                <%= submit_tag "Send" %>
+              <% end %>
           </div>
       </div>
 	</div>
-
+</div>
