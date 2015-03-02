@@ -7,13 +7,7 @@
 	max-width: 400px;
 	text-align: center;
 }
-.container
-{
-    width:100%;
-    height:100%;
-    float:left;
-    padding-left: 0px;
-}
+
 body
 {
     background-color: #C7D0D5;
@@ -114,14 +108,13 @@ body
 {
     color:#333;
 }
-.panel-body
-{
-    overflow:auto;
-    max-height: 500px;
-}
 .message_input
 {
     width: 84%;
+}
+.nav-link a:hover
+{
+    color:#ffa500;
 }
 .message_button
 {
@@ -240,11 +233,6 @@ body
     width:100%;
 }
 
-
-    .container
-    {
-    padding-left: 250px;
-    }
     #wrapper {
         padding-left: 250px;
     }
