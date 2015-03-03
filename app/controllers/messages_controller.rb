@@ -1,27 +1,35 @@
 class MessagesController < ApplicationController
- def index
-  temp_user_id = get_user_id
-  @user_id = temp_user_id
-  current_user = User.new(user_id: temp_user_id ,user_free: false)
-  free_users = User.where(:user_free =>  true)
-  session[:name] = current_user.user_id.to_s
-  @error = free_users.count
-    if free_users.count > 0
-    other_user = free_users.first
-    other_user.update(user_free: false)
-    current_user.update(user_free: false)
-    temproomid = other_user.room_id
-    @roomaddress = "/messages/room/" + temproomid.to_s
-    @output = "User found"
-    else
-      current_user.update(user_free: true)
-      temproomid = get_room_id
-      current_user.update(room_id: temproomid)
-      @roomaddress = "/messages/room/" + temproomid.to_s
-      session[:room] = "/messages/room/" + temproomid.to_s
-      @output = "Waiting for user"
-    end
- end
+
+  def index
+    temp_user_id = get_user_id
+    @user_id = temp_user_id
+    current_user = User.new(user_id: temp_user_id ,user_free: false)
+    free_users = User.where(:user_free =>  true)
+    session[:name] = current_user.user_id.to_s
+    session[:id] = temp_user_id
+      if free_users.count > 0
+        #This gets the first user and starts the user_free boolean on both to false
+        other_user = free_users.first
+        other_user.update(user_free: false)
+        current_user.update(user_free: false)
+        #This then sends a message to the other user and this user to let them know that a user has been found
+        temproomid = other_user.room_id
+        @roomaddress = "/messages/room/" + temproomid.to_s
+        @channel = "/messages/room/" + temproomid.to_s
+        @message = {:username => session[:name], :msg => "User Found Chat away"}
+        respond_to do |f|
+        f.js
+        end
+      else
+        #No user is currently free so it waits in a private room till the user is free
+        current_user.update(user_free: true)
+        temproomid = get_room_id
+        current_user.update(room_id: temproomid)
+        @roomaddress = "/messages/room/" + temproomid.to_s
+        session[:room] = "/messages/room/" + temproomid.to_s
+        @output = "Waiting for user"
+      end
+  end
 
   def new_message
     @channel = session[:room]
@@ -31,6 +39,15 @@ class MessagesController < ApplicationController
     end
   end
 
+  def chatreset
+     current_user = User.where(:user_id => session[:id])
+     current_user.update(user_free: false)
+  end
+
+  def userleft
+     current_user = User.where(:user_id => session[:id])
+     current_user.remove
+  end
   protected
   def get_user_id
     user_tempid = rand(1..100000000000000)
@@ -41,6 +58,7 @@ class MessagesController < ApplicationController
       return user_tempid
     end
   end
+
   def get_room_id
     room_tempid = rand(1..100000000000000)
     if User.find_by room_id: room_tempid.nil?
