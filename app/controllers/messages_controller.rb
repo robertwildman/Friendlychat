@@ -15,11 +15,9 @@ class MessagesController < ApplicationController
         #This then sends a message to the other user and this user to let them know that a user has been found
         temproomid = other_user.room_id
         @roomaddress = "/messages/room/" + temproomid.to_s
-        @channel = "/messages/room/" + temproomid.to_s
-        @message = {:username => session[:name], :msg => "User Found Chat away"}
-        respond_to do |f|
-        f.js
-        end
+        session[:room] = "/messages/room/" + temproomid.to_s
+       PrivatePub.publish_to @roomaddress, :username => "Helping Chat", :msg => "You have been connected with the a new user called: " + session[:name]
+      @output = "Helping Chat: You have been connected to " + other_user.user_id.to_s
       else
         #No user is currently free so it waits in a private room till the user is free
         current_user.update(user_free: true)
@@ -27,7 +25,7 @@ class MessagesController < ApplicationController
         current_user.update(room_id: temproomid)
         @roomaddress = "/messages/room/" + temproomid.to_s
         session[:room] = "/messages/room/" + temproomid.to_s
-        @output = "Waiting for user"
+        @output = "Waiting for user...."
       end
   end
 

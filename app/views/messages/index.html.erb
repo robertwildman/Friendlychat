@@ -47,7 +47,20 @@ data-ad-format="auto"></ins>
 </script>
 <script type="text/javascript" charset="utf-8">
   PrivatePub.subscribe("<%= @roomaddress %>", function(data) {
-    $('<li></li>').html(data.username + ": " + data.msg).appendTo('#chat');
+    if(data.username == "Helpingcompchat")
+    {
+        $.ajax({
+        url: '/compreply',
+        type: 'POST',
+        dataType: 'json',
+        data: settings,
+        cache: true,
+        success: function (data) {}
+      });
+    }else
+    {
+      $('<li></li>').html(data.username + ": " + data.msg).appendTo('#chat');
+    }
   });
   window.onbeforeunload = function()
   {
@@ -67,7 +80,7 @@ data-ad-format="auto"></ins>
     <li>
       <p>Room id is <%= @roomaddress %> </p>
     </li>
-    <%= @output%>
+   <li> <%= @output%> </li>
     <%= @error%>
   </ul>
 </div>
