@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   root 'messages#index'
   post '/new_message' => 'messages#new_message', :as => :new_message
   post '/compreply' => 'messages#compreply'
+  post '/userleft' => 'messages#userleft'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

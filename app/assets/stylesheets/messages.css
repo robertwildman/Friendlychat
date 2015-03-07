@@ -7,10 +7,33 @@
 	max-width: 400px;
 	text-align: center;
 }
-
+.modal-header
+{
+    background-color: #FFAE19;
+    color:white;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.nav-link
+{
+    cursor: pointer;
+    cursor: hand;
+}
 body
 {
     background-color: #FFAE19;
+    padding-top: 70px;
+}
+.maincontainer
+{
+    width:100%;
+    text-align: center;
+}
+#chat
+{
+    overflow:hidden;
+    overflow-y:auto;
+    max-height: 300px;
 }
 #yourinfo
 {
@@ -24,81 +47,6 @@ body
 {
     margin-bottom: -4px;
 }
-.Title a:hover
-{
-    background-color: #FF0000;
-}
-.Title a:hover
-{
-    color:#fff;
-}
-.Head1 a:hover
-{
-    background-color: #ff7f00;
-}
-.Head1 a:hover
-{
-    color: #fff;
-}
-
-.Head2 a:hover
-{
-    background-color: #ffff00;
-}
-.Head2 a:hover
-{
-    color: #333;
-}
-
-.Head3 a:hover
-{
-    background-color: #00ff00;
-}
-.Head3 a:hover
-{
-    color: #333;
-}
-
-.Head4 a:hover
-{
-    background-color: #0000ff;
-}
-.Head4 a:hover
-{
-    color: #fff;
-}
-
-.Head5 a:hover
-{
-    background-color: #4B0082;
-}
-.Head5 a:hover
-{
-    color: #fff;
-}
-
-.Head6 a:hover
-{
-    background-color: #8F00ff;
-}
-.Head6 a:hover
-{
-    color: #fff;
-}
-
-.heads
-{
-    background-color: #FF7148;
-}
-.heads a
-{
-    color: #333;
-}
-
-
-
-
-
 
 .Title
 {
@@ -121,9 +69,16 @@ body
     width: 14%;
 }
 .chat-panel
-{    max-width: 900px;
-    margin: 0 auto;
-    float:none;
+{
+    width: 98%;
+    margin: auto;
+    margin-top: 100px;
+    text-align: left;
+    max-height: 400px;
+}
+.panel-footer
+{
+    text-align: center;
 }
 .footer_inner
 {
@@ -212,10 +167,8 @@ body
     font-size: 18px;
     line-height: 60px;
 }
-.adsbygoogle
-{
-    width:80%;
-}
+
+
 
 
 
@@ -228,10 +181,11 @@ body
 {
     width: 50px;
 }
-.adsbygoogle
-{
-    width:100%;
-}
+    .chat-panel
+    {
+        margin: auto;
+        width: 700px;
+    }
 
     #wrapper {
         padding-left: 250px;
@@ -260,4 +214,17 @@ body
         position: relative;
         margin-right: 0;
     }
+}
+
+@media(min-width:1200px) {
+    .chat-panel
+    {
+        margin: auto;
+        width: 1000px;
+    }
+    .adsbygoogle
+    {
+    margin-top: 90px;
+    }
+
 }

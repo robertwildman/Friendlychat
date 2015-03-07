@@ -45,6 +45,7 @@ class MessagesController < ApplicationController
   def userleft
      current_user = User.where(:user_id => session[:id])
      current_user.remove
+     p "User left"
   end
   protected
   def get_user_id
