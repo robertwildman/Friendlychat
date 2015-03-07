@@ -24,6 +24,10 @@ body
     background-color: #FFAE19;
     padding-top: 70px;
 }
+.chat_message
+{
+    width: 80%;
+}
 .maincontainer
 {
     width:100%;
@@ -75,6 +79,7 @@ body
     margin-top: 100px;
     text-align: left;
     max-height: 400px;
+    display: table;
 }
 .panel-footer
 {

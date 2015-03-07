@@ -33,10 +33,12 @@
       <ul class = "nav nav-pills navbar-nav navbar-right">
         <li role="presentation" class="dropdown nav-link">
 
-        <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-expanded="false"> Person names <span class="caret"></span>
+        <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-expanded="false"> <%= @name %> <span class="caret"></span>
         </a>
         <ul class="dropdown-menu" role="menu">
-           <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Change your name</a></li>
+           <li role="presentation"><a role="menuitem" data-toggle="modal" class="nav-link" data-target="#changename"> Change your name </a></li>
+           <li role="presentation"><a role="menuitem" data-toggle="modal" class="nav-link" data-target="#changename"> View your current issue </a></li>
+           <li role="presentation"><a role="menuitem" data-toggle="modal" class="nav-link" data-target="#changename"> Change issue </a></li>
         </ul>
       </li>
       </ul>
@@ -95,7 +97,7 @@ $(window).unload(function(){
 <div class="panel-footer">
   <div class= "footer_inner center">
     <%= form_tag new_message_path, :remote => true do %>
-    <%= text_field_tag :message %>
+    <%= text_field_tag :message, :class => "chat_message" %>
     <%= submit_tag "Send" %>
     <% end %>
   </div>
@@ -124,7 +126,14 @@ $(window).unload(function(){
         <h4 class="modal-title" id="myModalLabel">About Us</h4>
       </div>
       <div class="modal-body">
-        <p>We are here</p>
+        <p>
+        Hello and Welcome to Helping Chat! This website is here to help anyone that is dealing with an issue in their life. Its a simple anonmiouns chat program that allows you to talk to a random person that has an issue and you will work out both your issues together in a place where you can not be judged or anyone know who you are.
+        </p>
+        <br>
+        <p>You can find me on twitter here: <a href="https://www.twitter.com/robertwilman" "email me">@Robertwildman</a>
+        <br>
+            You can email me at robertwildman@helpingchat.com .
+        </p>
       </div>
     </div>
   </div>
@@ -139,7 +148,13 @@ $(window).unload(function(){
         <h4 class="modal-title" id="myModalLabel">Starting Questions</h4>
       </div>
       <div class="modal-body">
-        <p>We are here</p>
+        <p> To help you get the convestions going. We have come up with some good starting questions to break the ice and help each ohter quicker and better.
+        <ol>
+          <li>How are you currently feeling due to your issue? </li>
+          <li>What hobbies do you have? </li>
+          <li>What makes your feel good about yourself? </li>
+        </ol>
+        </p>
       </div>
     </div>
   </div>
@@ -154,7 +169,8 @@ $(window).unload(function(){
         <h4 class="modal-title" id="myModalLabel">Other places to get help</h4>
       </div>
       <div class="modal-body">
-        <p>We are here</p>
+        <p>Sometimes this site can't help you or can't give the the full help you will need to get better. For this reason we encore you vist these sites based on the issue that you might have.
+        </p>
       </div>
     </div>
   </div>
@@ -168,7 +184,30 @@ $(window).unload(function(){
         <h4 class="modal-title" id="myModalLabel">Rules</h4>
       </div>
       <div class="modal-body">
-        <p>We are here</p>
+        <p>
+        We want to keep the rules simple an easy to follow.
+          <ol>
+            <li>Understand people are farglie when on the site. </li>
+            <li>Respect who the person is and who they want to be.</li>
+            <li>Be open minded about someones view and listen to them. </li>
+            <li>No making fun or trolling people. </li>
+            <li>Respect the other person pricay. </li>
+          </ol>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Changing name -->
+<div class="modal fade" id="changename" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Change your name </h4>
+      </div>
+      <div class="modal-body">
+        <p>Your current name is: <%= @name %> </p>
       </div>
     </div>
   </div>

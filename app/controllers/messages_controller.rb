@@ -6,6 +6,7 @@ class MessagesController < ApplicationController
     current_user = User.new(user_id: temp_user_id ,user_free: false)
     free_users = User.where(:user_free =>  true)
     session[:name] = current_user.user_id.to_s
+    @name = "Bob"
     session[:id] = temp_user_id
       if free_users.count > 0
         #This gets the first user and starts the user_free boolean on both to false
