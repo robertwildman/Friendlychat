@@ -29,13 +29,24 @@ class MessagesController < ApplicationController
         @output = "Waiting for user...."
       end
   end
-
+  def got_name?
+    current_user = User.where(:user_id => session[:id])
+    return current_user.username.present
+  end
   def new_message
     @channel = session[:room]
     @message = {:username => session[:name], :msg => params[:message]}
     respond_to do |f|
     f.js
     end
+  end
+
+  def send_message
+    PrivatePub.publish_to session[:room], :username => "send", :msg => " "
+  end
+
+  def receive_message
+    PrivatePub.publish_to session[:room], :username => "receive", :msg => " "
   end
 
   def chatreset
@@ -47,6 +58,9 @@ class MessagesController < ApplicationController
      current_user = User.where(:user_id => session[:id])
      current_user.remove
      p "User left"
+  end
+  def testmessage
+      PrivatePub.publish_to session[:room], :username => "receive", :msg => " rgreg"
   end
   protected
   def get_user_id

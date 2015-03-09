@@ -47,10 +47,11 @@
 </nav>
 <!-- Main_Page -->
 <!-- Desktop side -->
+<% got_name? %>
 
 <script type="text/javascript" charset="utf-8">
   PrivatePub.subscribe("<%= @roomaddress %>", function(data) {
-    if(data.username == "Helpingcompchat")
+    if(data.username == "helptimereply")
     {
         $.ajax({
         url: '/compreply',
@@ -65,18 +66,15 @@
       $('<li></li>').html(data.username + ": " + data.msg).appendTo('#chat');
     }
   });
-$(window).unload(function(){
-    $.ajax({
-        url: '/userleft',
-        type: 'POST',
-        dataType: 'json',
-        data: settings,
-        cache: true,
-        success: function (data) {}
 
-    });
-});
+  //The checker code
+  var returned;
+  var firstmessagedsent;
+  var checkerclock = setInterval(function () {mychecker()}, 5000);
 
+  function mychecker() {
+
+  }
 </script>
 <!-- /#sidebar-wrapper -->
 <div class="maincontainer">
@@ -84,12 +82,8 @@ $(window).unload(function(){
  <div class="panel-heading">Your Chat:</div>
  <div class="panel-body">
    <ul id="chat">
-    <li>
-      <p>User id is <%= @user_id %> </p>
-    </li>
-    <li>
-      <p>Room id is <%= @roomaddress %> </p>
-    </li>
+    <li> User id is <%= @user_id %> </li>
+    <li> Room id is <%= @roomaddress %> </li>
    <li> <%= @output%> </li>
     <%= @error%>
   </ul>
@@ -97,7 +91,7 @@ $(window).unload(function(){
 <div class="panel-footer">
   <div class= "footer_inner center">
     <%= form_tag new_message_path, :remote => true do %>
-    <%= text_field_tag :message, :class => "chat_message" %>
+    <%= text_field_tag :message , nil , :class => "message chat_message"%>
     <%= submit_tag "Send" %>
     <% end %>
   </div>
@@ -212,3 +206,8 @@ $(window).unload(function(){
     </div>
   </div>
 </div>
+<% else %>
+<script src="/javascripts/application.js" type="text/javascript" charset="utf-8" async defer>
+  alert("You need a name");
+</script>
+<% end %>

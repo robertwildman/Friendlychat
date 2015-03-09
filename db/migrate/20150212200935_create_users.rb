@@ -4,6 +4,7 @@ class CreateUsers < ActiveRecord::Migration
 		t.integer :user_id
     	t.integer :room_id
     	t.boolean :user_free
+    	t.string  :user_name
       	t.timestamps
     end
   end
