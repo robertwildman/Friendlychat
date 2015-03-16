@@ -6,54 +6,56 @@
   <div class="container">
     <div class = "navbar-header">
       <p class = "navbar-brand"> Helping Chat </p>
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mainnav" aria-expanded="false" aria-controls="navbar">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-    </button>
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mainnav" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
     </div>
 
     <div class="collapse navbar-collapse" id="mainnav">
-    <ul class = "nav nav-pills navbar-nav">
-      <li class="nav-link">
-        <a data-toggle="modal" class="nav-link" data-target="#placeshelp">Other Places for Help</a>
-      </li>
-      <li class="nav-link">
-        <a data-toggle="modal" class="nav-link" data-target="#rules">Rules</a>
-      </li>
-      <li class="nav-link">
-        <a data-toggle="modal" class="nav-link" data-target="#startingquestions">Starting Questions</a>
-      </li>
+      <ul class = "nav nav-pills navbar-nav">
+        <li class="nav-link">
+          <a data-toggle="modal" class="nav-link" data-target="#placeshelp">Other Places for Help</a>
+        </li>
+        <li class="nav-link">
+          <a data-toggle="modal" class="nav-link" data-target="#rules">Rules</a>
+        </li>
+        <li class="nav-link">
+          <a data-toggle="modal" class="nav-link" data-target="#startingquestions">Starting Questions</a>
+        </li>
 
-      <li class="nav-link">
-        <a data-toggle="modal" class="nav-link" data-target="#aboutmodel">About Us</a>
-      </li>
-    </ul>
+        <li class="nav-link">
+          <a data-toggle="modal" class="nav-link" data-target="#aboutmodel">About Us</a>
+        </li>
+      </ul>
       <ul class = "nav nav-pills navbar-nav navbar-right">
         <li role="presentation" class="dropdown nav-link">
 
-        <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-expanded="false"> <%= @name %> <span class="caret"></span>
-        </a>
-        <ul class="dropdown-menu" role="menu">
+          <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-expanded="false"> <%= @name %> <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu" role="menu">
            <li role="presentation"><a role="menuitem" data-toggle="modal" class="nav-link" data-target="#changename"> Change your name </a></li>
            <li role="presentation"><a role="menuitem" data-toggle="modal" class="nav-link" data-target="#changename"> View your current issue </a></li>
            <li role="presentation"><a role="menuitem" data-toggle="modal" class="nav-link" data-target="#changename"> Change issue </a></li>
-        </ul>
-      </li>
-      </ul>
-    </div>
-  </div>
+         </ul>
+       </li>
+     </ul>
+   </div>
+ </div>
 </nav>
+<%newuser %>
+
 <!-- Main_Page -->
 <!-- Desktop side -->
-<% got_name? %>
+<%if got_name? %>
 
 <script type="text/javascript" charset="utf-8">
   PrivatePub.subscribe("<%= @roomaddress %>", function(data) {
     if(data.username == "helptimereply")
     {
-        $.ajax({
+      $.ajax({
         url: '/compreply',
         type: 'POST',
         dataType: 'json',
@@ -78,33 +80,56 @@
 </script>
 <!-- /#sidebar-wrapper -->
 <div class="maincontainer">
-<div class="panel panel-default chat-panel">
- <div class="panel-heading">Your Chat:</div>
- <div class="panel-body">
-   <ul id="chat">
-    <li> User id is <%= @user_id %> </li>
-    <li> Room id is <%= @roomaddress %> </li>
-   <li> <%= @output%> </li>
-    <%= @error%>
-  </ul>
-</div>
-<div class="panel-footer">
-  <div class= "footer_inner center">
-    <%= form_tag new_message_path, :remote => true do %>
-    <%= text_field_tag :message , nil , :class => "message chat_message"%>
-    <%= submit_tag "Send" %>
-    <% end %>
+  <div class="panel panel-default chat-panel">
+   <div class="panel-heading">Your Chat:</div>
+   <div class="panel-body">
+     <ul id="chat">
+      <li> User id is <%= @user_id %> </li>
+      <li> Room id is <%= @roomaddress %> </li>
+      <li> <%= @output%> </li>
+      <%= @error%>
+    </ul>
+  </div>
+  <div class="panel-footer">
+    <div class= "footer_inner center">
+      <%= form_tag new_message_path, :remote => true do %>
+      <%= text_field_tag :message , nil , :class => "message chat_message"%>
+      <%= submit_tag "Send" %>
+      <% end %>
+    </div>
   </div>
 </div>
+<% else %>
+<p><%= @output %></p>
+<div class="modal fade" id="aboutmodel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">About Us</h4>
+      </div>
+      <div class="modal-body">
+        <p>
+          Hello and Welcome to Helping Chat! This website is here to help anyone that is dealing with an issue in their life. Its a simple anonmiouns chat program that allows you to talk to a random person that has an issue and you will work out both your issues together in a place where you can not be judged or anyone know who you are.
+        </p>
+        <br>
+        <p>You can find me on twitter here: <a href="https://www.twitter.com/robertwilman" "email me">@Robertwildman</a>
+          <br>
+          You can email me at robertwildman@helpingchat.com .
+        </p>
+      </div>
+    </div>
+  </div>
 </div>
+<% end %>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <!-- Panel bottom -->
 <ins class="adsbygoogle"
-     style="display:inline-block;width:728px;height:90px"
-     data-ad-client="ca-pub-2049126681125303"
-     data-ad-slot="1243058876"></ins>
+style="display:inline-block;width:728px;height:90px"
+data-ad-client="ca-pub-2049126681125303"
+data-ad-slot="1243058876"></ins>
 <script>
-(adsbygoogle = window.adsbygoogle || []).push({});
+  (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 </div>
 
@@ -121,12 +146,12 @@
       </div>
       <div class="modal-body">
         <p>
-        Hello and Welcome to Helping Chat! This website is here to help anyone that is dealing with an issue in their life. Its a simple anonmiouns chat program that allows you to talk to a random person that has an issue and you will work out both your issues together in a place where you can not be judged or anyone know who you are.
+          Hello and Welcome to Helping Chat! This website is here to help anyone that is dealing with an issue in their life. Its a simple anonmiouns chat program that allows you to talk to a random person that has an issue and you will work out both your issues together in a place where you can not be judged or anyone know who you are.
         </p>
         <br>
         <p>You can find me on twitter here: <a href="https://www.twitter.com/robertwilman" "email me">@Robertwildman</a>
-        <br>
-            You can email me at robertwildman@helpingchat.com .
+          <br>
+          You can email me at robertwildman@helpingchat.com .
         </p>
       </div>
     </div>
@@ -143,11 +168,11 @@
       </div>
       <div class="modal-body">
         <p> To help you get the convestions going. We have come up with some good starting questions to break the ice and help each ohter quicker and better.
-        <ol>
-          <li>How are you currently feeling due to your issue? </li>
-          <li>What hobbies do you have? </li>
-          <li>What makes your feel good about yourself? </li>
-        </ol>
+          <ol>
+            <li>How are you currently feeling due to your issue? </li>
+            <li>What hobbies do you have? </li>
+            <li>What makes your feel good about yourself? </li>
+          </ol>
         </p>
       </div>
     </div>
@@ -179,7 +204,7 @@
       </div>
       <div class="modal-body">
         <p>
-        We want to keep the rules simple an easy to follow.
+          We want to keep the rules simple an easy to follow.
           <ol>
             <li>Understand people are farglie when on the site. </li>
             <li>Respect who the person is and who they want to be.</li>
@@ -206,8 +231,3 @@
     </div>
   </div>
 </div>
-<% else %>
-<script src="/javascripts/application.js" type="text/javascript" charset="utf-8" async defer>
-  alert("You need a name");
-</script>
-<% end %>

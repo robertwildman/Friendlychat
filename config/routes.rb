@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   post '/compreply' => 'messages#compreply'
   post '/userleft' => 'messages#userleft'
   post '/testmessage' => 'messages#testmessage'
+  post '/freshstart' => 'messages#newuser'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

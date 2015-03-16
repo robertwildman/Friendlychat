@@ -1,13 +1,19 @@
 class MessagesController < ApplicationController
 
   def index
+  end
+  def newuser
     temp_user_id = get_user_id
     @user_id = temp_user_id
+    @output = "Fresh start activited"
     current_user = User.new(user_id: temp_user_id ,user_free: false)
-    free_users = User.where(:user_free =>  true)
-    session[:name] = current_user.user_id.to_s
-    @name = "Bob"
+    session[:name] = current_user.user_name.to_s
     session[:id] = temp_user_id
+    return true
+  end
+  def newroom
+    current_user = User.where(:user_id => session[:id]).first
+    free_users = User.where(:user_free =>  true)
       if free_users.count > 0
         #This gets the first user and starts the user_free boolean on both to false
         other_user = free_users.first
@@ -18,7 +24,7 @@ class MessagesController < ApplicationController
         @roomaddress = "/messages/room/" + temproomid.to_s
         session[:room] = "/messages/room/" + temproomid.to_s
        PrivatePub.publish_to @roomaddress, :username => "Helping Chat", :msg => "You have been connected with the a new user called: " + session[:name]
-      @output = "Helping Chat: You have been connected to " + other_user.user_id.to_s
+      @output = "Helping Chat: You have been connected to " + other_user.user_name.to_s
       else
         #No user is currently free so it waits in a private room till the user is free
         current_user.update(user_free: true)
@@ -29,10 +35,6 @@ class MessagesController < ApplicationController
         @output = "Waiting for user...."
       end
   end
-  def got_name?
-    current_user = User.where(:user_id => session[:id])
-    return current_user.username.present
-  end
   def new_message
     @channel = session[:room]
     @message = {:username => session[:name], :msg => params[:message]}
@@ -40,6 +42,13 @@ class MessagesController < ApplicationController
     f.js
     end
   end
+    def got_name?
+    @output = "id " + session[:id].to_s
+    return false
+  end
+
+  helper_method :newuser
+  helper_method :got_name?
 
   def send_message
     PrivatePub.publish_to session[:room], :username => "send", :msg => " "
@@ -51,12 +60,12 @@ class MessagesController < ApplicationController
 
   def chatreset
      current_user = User.where(:user_id => session[:id])
-     current_user.update(user_free: false)
+     current_user.first.update(user_free: false)
   end
 
   def userleft
      current_user = User.where(:user_id => session[:id])
-     current_user.remove
+     current_user.first.remove
      p "User left"
   end
   def testmessage
