@@ -45,48 +45,42 @@
    </div>
  </div>
 </nav>
-<%newuser %>
 
 <!-- Main_Page -->
 <!-- Desktop side -->
-<%if got_name? %>
-
 <script type="text/javascript" charset="utf-8">
   PrivatePub.subscribe("<%= @roomaddress %>", function(data) {
-    if(data.username == "helptimereply")
+
+    if(data.username == "userjoin")
+    {
+      $('<li></li>').html("You have been connected with " + data.current_user).appendTo('#chat');
+    }else if(data.username == "lastjoin")
     {
       $.ajax({
-        url: '/compreply',
-        type: 'POST',
-        dataType: 'json',
-        data: settings,
-        cache: true,
-        success: function (data) {}
+           type:'POST',
+           url: '/replyuserjoin'
       });
-    }else
+    }else if(data.msg == "replyme")
+    {
+
+    }
+    else
     {
       $('<li></li>').html(data.username + ": " + data.msg).appendTo('#chat');
     }
   });
 
-  //The checker code
-  var returned;
-  var firstmessagedsent;
-  var checkerclock = setInterval(function () {mychecker()}, 5000);
-
-  function mychecker() {
-
-  }
 </script>
 <!-- /#sidebar-wrapper -->
 <div class="maincontainer">
   <div class="panel panel-default chat-panel">
-   <div class="panel-heading">Your Chat:</div>
+   <div class="panel-heading">
+    Your Chat:    <%= button_to @chatbutton, newroom_path,:remote => true,form_class: "pull-right"%></div>
    <div class="panel-body">
      <ul id="chat">
       <li> User id is <%= @user_id %> </li>
       <li> Room id is <%= @roomaddress %> </li>
-      <li> <%= @output%> </li>
+      <li><%=  @output %> </li>
       <%= @error%>
     </ul>
   </div>
@@ -99,8 +93,6 @@
     </div>
   </div>
 </div>
-<% else %>
-<p><%= @output %></p>
 <div class="modal fade" id="aboutmodel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -121,7 +113,6 @@
     </div>
   </div>
 </div>
-<% end %>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <!-- Panel bottom -->
 <ins class="adsbygoogle"

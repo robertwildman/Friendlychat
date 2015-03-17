@@ -4,10 +4,10 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'messages#index'
   post '/new_message' => 'messages#new_message', :as => :new_message
-  post '/compreply' => 'messages#compreply'
+  post '/replyuserjoin' => 'messages#replyuserjoin'
   post '/userleft' => 'messages#userleft'
   post '/testmessage' => 'messages#testmessage'
-  post '/freshstart' => 'messages#newuser'
+  post '/newroom' => 'messages#newroom'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
