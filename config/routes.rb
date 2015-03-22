@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   post '/userleft' => 'messages#userleft'
   post '/testmessage' => 'messages#testmessage'
   post '/newroom' => 'messages#newroom'
+  post '/freshstart' => 'messages#newuser'
+  post '/changename' => 'messages#changename'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

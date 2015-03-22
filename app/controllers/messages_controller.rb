@@ -1,6 +1,8 @@
 class MessagesController < ApplicationController
   respond_to :html, :json
   def index
+    if(session[:id].nil? == true)
+
     temp_user_id = get_user_id
     @user_id = temp_user_id
     @chatbutton = "Start new Chat"
@@ -33,6 +35,36 @@ class MessagesController < ApplicationController
         @channel = session[:room]
         @output = "You will need to wait for user to join!"
     end
+  else
+
+    current_user = User.where(:user_id => session[:id]).first
+    @name = current_user.user_name
+    @chatbutton = "Start new Chat"
+    @user_id = current_user.user_id
+    free_users = User.where(:user_free =>  true)
+    if free_users.count > 0
+        #This gets the first user and starts the user_free boolean on both to false
+        other_user = free_users.first
+        other_user.update(user_free: false)
+        current_user.update(user_free: false)
+        #This then sends a message to the other user and this user to let them know that a user has been found
+        temproomid = other_user.room_id
+        @roomaddress = "/messages/room/" + temproomid.to_s
+        session[:room] = "/messages/room/" + temproomid.to_s
+        @channel = session[:room]
+        session[:other_name] = "User " + other_user.user_id.to_s
+        PrivatePub.publish_to @roomaddress, :username => "lastjoin", :current_user => current_user.user_name
+        else
+        #No user is currently free so it waits in a private room till the user is free
+        current_user.update(user_free: true)
+        temproomid = get_room_id
+        current_user.update(room_id: temproomid)
+        @roomaddress = "/messages/room/" + temproomid.to_s
+        session[:room] = "/messages/room/" + temproomid.to_s
+        @channel = session[:room]
+        @output = "You will need to wait for user to join!"
+    end
+  end
   end
   def newroom
     current_user = User.where(:user_id => session[:id]).first
@@ -71,6 +103,10 @@ class MessagesController < ApplicationController
       f.js
     end
   end
+    def got_name?
+      @output = "id " + session[:id].to_s
+      return false
+    end
   helper_method :newuser
   helper_method :newroom
 
@@ -100,6 +136,13 @@ class MessagesController < ApplicationController
   def testmessage
       PrivatePub.publish_to session[:room], :username => "receive", :msg => " rgreg"
   end
+  def changename
+    current_user = User.where(:user_id => session[:id])
+    current_user.first.update(user_name:params[:name])
+    @name = current_user.first.user_name
+    render :nothing => true
+  end
+
   protected
   def get_user_id
     user_tempid = rand(1..100000000000000)
