@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   post '/newroom' => 'messages#newroom'
   post '/freshstart' => 'messages#newuser'
   post '/changename' => 'messages#changename'
+  post '/changeissue' => 'messages#changeissue'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

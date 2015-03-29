@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20150212200935) do
     t.integer  "room_id"
     t.boolean  "user_free"
     t.string   "user_name"
+    t.string   "user_issue"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

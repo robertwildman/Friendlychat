@@ -33,12 +33,11 @@
       <ul class = "nav nav-pills navbar-nav navbar-right">
         <li role="presentation" class="dropdown nav-link">
 
-          <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-expanded="false"> <%= @name %> <span class="caret"></span>
+          <a id="nav-bar-name"class="dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-expanded="false"> <%= @name %> <span class="caret"></span>
           </a>
           <ul class="dropdown-menu" role="menu">
            <li role="presentation"><a role="menuitem" data-toggle="modal" class="nav-link" data-target="#changename"> Change your name </a></li>
-           <li role="presentation"><a role="menuitem" data-toggle="modal" class="nav-link" data-target="#changename"> View your current issue </a></li>
-           <li role="presentation"><a role="menuitem" data-toggle="modal" class="nav-link" data-target="#changename"> Change issue </a></li>
+           <li role="presentation"><a role="menuitem" data-toggle="modal" class="nav-link" data-target="#changeissue"> Change issue </a></li>
          </ul>
        </li>
      </ul>
@@ -53,7 +52,23 @@
 
     if(data.username == "userjoin")
     {
-      $('<li></li>').html("You have been connected with " + data.current_user).appendTo('#chat');
+      if(data.user1_id == "<%= @user_id %>")
+      {
+        //This means that the user is user 1
+        //Therefore display user 2 infomation
+        $('<li></li>').html("You have been connected with " + data.user1_name).appendTo('#chat');
+        $('<li></li>').html("Their issue is " + data.user1_issue).appendTo('#chat');
+        $('<li></li>').html("You have been connected with " + data.user2_name).appendTo('#chat');
+        $('<li></li>').html("Their issue is " + data.user2_issue).appendTo('#chat');
+      }else{
+        //This means that the user is user 2
+        //therefore display user 1 infomation
+       $('<li></li>').html("You have been connected with " + data.user1_name).appendTo('#chat');
+        $('<li></li>').html("Their issue is " + data.user1_issue).appendTo('#chat');
+        $('<li></li>').html("You have been connected with " + data.user2_name).appendTo('#chat');
+        $('<li></li>').html("Their issue is " + data.user2_issue).appendTo('#chat');
+      }
+
     }else if(data.username == "lastjoin")
     {
       $.ajax({
@@ -66,10 +81,35 @@
     }
     else
     {
+      document.getElementById("chat").scrollTop = document.getElementById("chat").scrollHeight;
       $('<li></li>').html(data.username + ": " + data.msg).appendTo('#chat');
     }
   });
+setInterval(function() {
+//The code for the checker program will go here!
 
+
+
+ }, 30000);
+function namechangedfunction()
+{
+
+  var username = document.getElementById('username_input').value;
+  $('#nav-bar-name').text(username);
+  $('#nametext1').text("Your current usernamme is: " + username);
+  $('#namechangedtext').text("Your name has been changed to: " + username);
+  $('#namechanged').modal('show');
+  $('#changename').modal('hide');
+}
+function issuechangedfunction()
+{
+
+  var issue = document.getElementById('issue_input').value;
+  $('#issuetext1').text("Your current issue is: " + issue);
+  $('#issuechangedtext').text("Your issue has been changed to: " + issue);
+  $('#issuechanged').modal('show');
+  $('#changeissue').modal('hide');
+}
 </script>
 <!-- /#sidebar-wrapper -->
 <div class="maincontainer">
@@ -87,8 +127,8 @@
   <div class="panel-footer">
     <div class= "footer_inner center">
       <%= form_tag new_message_path, :remote => true do %>
-      <%= text_field_tag :message , nil , :class => "message chat_message"%>
-      <%= submit_tag "Send" %>
+        <%= text_field_tag :message , nil , :class => "message chat_message"%>
+        <%= submit_tag "Send" %>
       <% end %>
     </div>
   </div>
@@ -198,13 +238,13 @@ data-ad-slot="1243058876"></ins>
         <h4 class="modal-title" id="myModalLabel">Change your name </h4>
       </div>
       <div class="modal-body">
-        <p>Your current name is: <%= @name %> </p>
+        <p id="nametext1">Your current name is: <%= @name %> </p>
         <!-- This sends a form away to the controller for changing name -->
         <%= form_tag(changename_path, method: "Post", :remote => true) do %>
           <div class = "form-group">
-            <%= text_field_tag :name,@name,:placeholder => "Enter Name",:class => 'form-control'%>
+            <%= text_field_tag :name,@name,:placeholder => "Enter Name",:id => "username_input",:class => 'form-control'%>
           </div>
-          <%= submit_tag "Change Name", :onclick => "return validateform()",:class => 'btn btn-lg btn-block btn-default namechange-button add-topic-btn',:id => "namechange-button"%>
+          <%= submit_tag "Change Name", :onclick => "return namechangedfunction()",:class => 'btn btn-lg btn-block btn-default namechange-button add-topic-btn',:id => "namechange-button"%>
 
         <% end %>
       </div>
@@ -212,15 +252,54 @@ data-ad-slot="1243058876"></ins>
   </div>
 </div>
 
-<script src="/javascripts/application.js" type="text/javascript" charset="utf-8">
-$(document).ready();
-alert("egre");
-function validateForm()
-{
-  alert("gre");
-}
-$('#namechange-button"').click(function(){
-    alert("Name Changed");
-});
-</script>
+<!-- Name changed -->
+<div class="modal fade" id="namechanged" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Name has been changed!</h4>
+      </div>
+      <div class="modal-body">
+        <p id ="namechangedtext">Your username has been changed to:</p>
+    </div>
+  </div>
+</div>
+</div>
+<!--Changing issue -->
+<div class="modal fade" id="changeissue" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Change your issue</h4>
+      </div>
+      <div class="modal-body">
+        <p id="issuetext1">Your current issue is: <%= @issue %> </p>
+        <!-- This sends a form away to the controller for changing name -->
+        <%= form_tag(changeissue_path, method: "Post", :remote => true) do %>
+          <div class = "form-group">
+            <%= text_field_tag :name,@issue,:placeholder => "Enter issue",:id => "issue_input",:class => 'form-control'%>
+          </div>
+          <%= submit_tag "Change Issue", :onclick => "return issuechangedfunction()",:class => 'btn btn-lg btn-block btn-default namechange-button add-topic-btn'%>
 
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Issue changed -->
+<div class="modal fade" id="issuechanged" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Issue has been changed!</h4>
+      </div>
+      <div class="modal-body">
+        <p id ="issuechangedtext">Your Issue has been changed to:</p>
+    </div>
+  </div>
+</div>
+</div>

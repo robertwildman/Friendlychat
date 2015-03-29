@@ -1,7 +1,7 @@
 class MessagesController < ApplicationController
   respond_to :html, :json
   def index
-    if(session[:id].nil? == true)
+  if(session[:id].nil? == true)
 
     temp_user_id = get_user_id
     @user_id = temp_user_id
@@ -24,7 +24,7 @@ class MessagesController < ApplicationController
         session[:room] = "/messages/room/" + temproomid.to_s
         @channel = session[:room]
         session[:other_name] = "User " + other_user.user_id.to_s
-        PrivatePub.publish_to @roomaddress, :username => "lastjoin", :current_user => current_user.user_name
+        PrivatePub.publish_to @roomaddress, :username => "userjoin", :user1_id => current_user.user_id , :user1_name =>  current_user.user_name, :user1_issue => "Issue to be installed", :user2_id => other_user.user_id , :user2_name => other_user.user_name, :user2_issue => "Issue to be installed"
         else
         #No user is currently free so it waits in a private room till the user is free
         current_user.update(user_free: true)
@@ -39,6 +39,7 @@ class MessagesController < ApplicationController
 
     current_user = User.where(:user_id => session[:id]).first
     @name = current_user.user_name
+    session[:name] = current_user.user_name
     @chatbutton = "Start new Chat"
     @user_id = current_user.user_id
     free_users = User.where(:user_free =>  true)
@@ -53,7 +54,7 @@ class MessagesController < ApplicationController
         session[:room] = "/messages/room/" + temproomid.to_s
         @channel = session[:room]
         session[:other_name] = "User " + other_user.user_id.to_s
-        PrivatePub.publish_to @roomaddress, :username => "lastjoin", :current_user => current_user.user_name
+        PrivatePub.publish_to @roomaddress, :username => "userjoin", :current_user => current_user.user_name
         else
         #No user is currently free so it waits in a private room till the user is free
         current_user.update(user_free: true)
@@ -66,6 +67,11 @@ class MessagesController < ApplicationController
     end
   end
   end
+
+
+
+
+
   def newroom
     current_user = User.where(:user_id => session[:id]).first
     free_users = User.where(:user_free =>  true)
@@ -78,8 +84,7 @@ class MessagesController < ApplicationController
         temproomid = other_user.room_id
         @roomaddress = "/messages/room/" + temproomid.to_s
         session[:room] = "/messages/room/" + temproomid.to_s
-        PrivatePub.publish_to @roomaddress, :username => "Helping Chat", :msg => "You have been connected with the a new user called: " + other_user.user_id.to_s
-        flash[:output] = "Helping Chat: You have been connected to " + other_user.user_name.to_s
+        PrivatePub.publish_to @roomaddress, :username => "Helping Chat", :msg => "You have been connected with the a new user called: " + other_user.user_name
 
 
     else
@@ -90,7 +95,7 @@ class MessagesController < ApplicationController
         @roomaddress = "/messages/room/" + temproomid.to_s
         session[:room] = "/messages/room/" + temproomid.to_s
         flash[:output] ="Waiting for user...."
-        PrivatePub.publish_to @roomaddress, :username => "Helping Chat", :msg => "You have been connected with the a new user called: " + other_user.user_id.to_s
+        PrivatePub.publish_to @roomaddress, :username => "Helping Chat", :msg => "You have been connected with the a new user called: " + other_user.user_name
 
 
 
@@ -136,10 +141,19 @@ class MessagesController < ApplicationController
   def testmessage
       PrivatePub.publish_to session[:room], :username => "receive", :msg => " rgreg"
   end
+
   def changename
     current_user = User.where(:user_id => session[:id])
     current_user.first.update(user_name:params[:name])
     @name = current_user.first.user_name
+    session[:name] = current_user.first.user_name
+    render :nothing => true
+  end
+
+  def changeissue
+    current_user = User.where(:user_id => session[:id])
+    current_user.first.update(user_issue:params[:issue])
+    session[:issue] = current_user.first.user_issue
     render :nothing => true
   end
 
