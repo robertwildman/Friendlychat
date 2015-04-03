@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   # You can have the root of your site routed with "root"
-  root 'messages#index'
+  root 'messages#splash'
   post '/new_message' => 'messages#new_message', :as => :new_message
   post '/replyuserjoin' => 'messages#replyuserjoin'
   post '/userleft' => 'messages#userleft'
