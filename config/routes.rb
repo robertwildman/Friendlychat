@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   post '/freshstart' => 'messages#newuser'
   post '/changename' => 'messages#changename'
   post '/changeissue' => 'messages#changeissue'
+  get '/home' => 'messages#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

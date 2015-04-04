@@ -33,7 +33,7 @@
       <ul class = "nav nav-pills navbar-nav navbar-right">
         <li role="presentation" class="dropdown nav-link">
 
-          <a id="nav-bar-name"class="dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-expanded="false"> <%= @name %> <span class="caret"></span>
+          <a id="nav-bar"class="dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-expanded="false"> <span id="nav-bar-name"><%= @name %> </span><span class="caret"></span>
           </a>
           <ul class="dropdown-menu" role="menu">
            <li role="presentation"><a role="menuitem" data-toggle="modal" class="nav-link" data-target="#changename"> Change your name </a></li>
@@ -47,104 +47,84 @@
 
 <!-- Main_Page -->
 <!-- Desktop side -->
-<script type="text/javascript" charset="utf-8">
-  PrivatePub.subscribe("<%= @roomaddress %>", function(data) {
-
-    if(data.username == "userjoin")
-    {
-      if(data.user1_id == "<%= @user_id %>")
-      {
-        //This means that the user is user 1
-        //Therefore display user 2 infomation
-        $('<li></li>').html("You have been connected with " + data.user1_name).appendTo('#chat');
-        $('<li></li>').html("Their issue is " + data.user1_issue).appendTo('#chat');
-        $('<li></li>').html("You have been connected with " + data.user2_name).appendTo('#chat');
-        $('<li></li>').html("Their issue is " + data.user2_issue).appendTo('#chat');
-      }else{
-        //This means that the user is user 2
-        //therefore display user 1 infomation
-       $('<li></li>').html("You have been connected with " + data.user1_name).appendTo('#chat');
-        $('<li></li>').html("Their issue is " + data.user1_issue).appendTo('#chat');
-        $('<li></li>').html("You have been connected with " + data.user2_name).appendTo('#chat');
-        $('<li></li>').html("Their issue is " + data.user2_issue).appendTo('#chat');
-      }
-
-    }else if(data.username == "lastjoin")
-    {
-      $.ajax({
-           type:'POST',
-           url: '/replyuserjoin'
-      });
-    }else if(data.msg == "replyme")
-    {
-
-    }
-    else
-    {
-      document.getElementById("chat").scrollTop = document.getElementById("chat").scrollHeight;
-      $('<li></li>').html(data.username + ": " + data.msg).appendTo('#chat');
-    }
-  });
-setInterval(function() {
-//The code for the checker program will go here!
-
-
-
- }, 30000);
-function namechangedfunction()
-{
-
-  var username = document.getElementById('username_input').value;
-  $('#nav-bar-name').text(username);
-  $('#nametext1').text("Your current usernamme is: " + username);
-  $('#namechangedtext').text("Your name has been changed to: " + username);
-  $('#namechanged').modal('show');
-  $('#changename').modal('hide');
-}
-function issuechangedfunction()
-{
-
-  var issue = document.getElementById('issue_input').value;
-  $('#issuetext1').text("Your current issue is: " + issue);
-  $('#issuechangedtext').text("Your issue has been changed to: " + issue);
-  $('#issuechanged').modal('show');
-  $('#changeissue').modal('hide');
-}
-</script>
 <!-- /#sidebar-wrapper -->
 <div class="maincontainer">
   <div class="panel panel-default chat-panel">
-   <div class="panel-heading">
-    Your Chat:    <%= button_to @chatbutton, newroom_path,:remote => true,form_class: "pull-right"%></div>
-   <div class="panel-body">
-     <ul id="chat">
-      <li> User id is <%= @user_id %> </li>
-      <li> Room id is <%= @roomaddress %> </li>
-      <li><%=  @output %> </li>
-      <%= @error%>
-    </ul>
-  </div>
-  <div class="panel-footer">
-    <div class= "footer_inner center">
-      <%= form_tag new_message_path, :remote => true do %>
+     <div class="panel-heading">
+      Your Chat:    <%= button_to @chatbutton, newroom_path,:remote => true,form_class: "pull-right"%>
+      </div>
+      <div class="panel-body">
+       <ul id="chat">
+        <li> User id is <%= @user_id %> </li>
+        <li> Room id is <%= @roomaddress %> </li>
+        <li><%=  @output %> </li>
+        <%= @error%>
+      </ul>
+     </div>
+    <div class="panel-footer">
+      <div class= "footer_inner center">
+        <%= form_tag new_message_path, :remote => true do %>
         <%= text_field_tag :message , nil , :class => "message chat_message"%>
         <%= submit_tag "Send" %>
-      <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- Panel bottom -->
+  <ins class="adsbygoogle"
+  style="display:inline-block;width:728px;height:90px"
+  data-ad-client="ca-pub-2049126681125303"
+  data-ad-slot="1243058876"></ins>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+<!-- End of the main container -->
+</div>
+
+
+<!--Splash Modal -->
+<div class="modal fade" id="splashmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Welcome to Helping Chat</h4>
+      </div>
+      <div class="modal-body">
+        <p>
+          Hello and Welcome to Helping Chat! This website is here to help anyone that is dealing with an issue in their life. Its a simple anonmiouns chat program that allows you to talk to a random person that has an issue and you will work out both your issues together in a place where you can not be judged or anyone know who you are.If you ares till having issues after using this website please seak some help from a doctor as they can and will help you.
+          <br>
+          You can find me on twitter here: <a href="https://www.twitter.com/robertwilman">@Robertwildman</a>
+          <br>
+          You can email me at <a href="mailto:robertwildman@helpingchat.com?subject=website">robertwildman@helpingchat.com</a>.
+          <br>
+          Your current name: <span id = "name"><%= @name %></span>
+          <br>
+          <% if got_issue? %>
+          Your current saved issue: <span id="issue"><%= @issue %></span>
+          <% else %>
+          There is no issue saved for you, If you would like to add one please click on the button below.
+          <% end %>
+        </p>
+      </div>
+      <div class="modal-footer">
+        <div class="modal-spalsh-buttongroup">
+          <div class="modal-splash-button">
+             <a data-toggle="modal" class="model-splash-link" data-target="#changename">Change Name</a>
+          </div>
+          <div class="modal-splash-button">
+             <a data-toggle="modal" class="model-splash-link" data-target="#changeissue">Change Issue</a>
+          </div>
+          <div class="modal-splash-button">
+             <a data-toggle="modal" class="model-splash-link" data-target="#aboutmodel">Start Chatting</a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- Panel bottom -->
-<ins class="adsbygoogle"
-style="display:inline-block;width:728px;height:90px"
-data-ad-client="ca-pub-2049126681125303"
-data-ad-slot="1243058876"></ins>
-<script>
-  (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-</div>
-
-
 
 
 <!-- About Us -->
@@ -241,10 +221,10 @@ data-ad-slot="1243058876"></ins>
         <p id="nametext1">Your current name is: <%= @name %> </p>
         <!-- This sends a form away to the controller for changing name -->
         <%= form_tag(changename_path, method: "Post", :remote => true) do %>
-          <div class = "form-group">
-            <%= text_field_tag :name,@name,:placeholder => "Enter Name",:id => "username_input",:class => 'form-control'%>
-          </div>
-          <%= submit_tag "Change Name", :onclick => "return namechangedfunction()",:class => 'btn btn-lg btn-block btn-default namechange-button add-topic-btn',:id => "namechange-button"%>
+        <div class = "form-group">
+          <%= text_field_tag :name,@name,:placeholder => "Enter Name",:id => "username_input",:class => 'form-control'%>
+        </div>
+        <%= submit_tag "Change Name", :onclick => "return namechangedfunction()",:class => 'btn btn-lg btn-block btn-default namechange-button add-topic-btn',:id => "namechange-button"%>
 
         <% end %>
       </div>
@@ -262,9 +242,9 @@ data-ad-slot="1243058876"></ins>
       </div>
       <div class="modal-body">
         <p id ="namechangedtext">Your username has been changed to:</p>
+      </div>
     </div>
   </div>
-</div>
 </div>
 <!--Changing issue -->
 <div class="modal fade" id="changeissue" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -278,10 +258,10 @@ data-ad-slot="1243058876"></ins>
         <p id="issuetext1">Your current issue is: <%= @issue %> </p>
         <!-- This sends a form away to the controller for changing name -->
         <%= form_tag(changeissue_path, method: "Post", :remote => true) do %>
-          <div class = "form-group">
-            <%= text_field_tag :name,@issue,:placeholder => "Enter issue",:id => "issue_input",:class => 'form-control'%>
-          </div>
-          <%= submit_tag "Change Issue", :onclick => "return issuechangedfunction()",:class => 'btn btn-lg btn-block btn-default namechange-button add-topic-btn'%>
+        <div class = "form-group">
+          <%= text_field_tag :issue,@issue,:placeholder => "Enter issue",:id => "issue_input",:class => 'form-control'%>
+        </div>
+        <%= submit_tag "Change Issue", :onclick => "return issuechangedfunction()",:class => 'btn btn-lg btn-block btn-default namechange-button add-topic-btn'%>
 
         <% end %>
       </div>
@@ -299,7 +279,76 @@ data-ad-slot="1243058876"></ins>
       </div>
       <div class="modal-body">
         <p id ="issuechangedtext">Your Issue has been changed to:</p>
+      </div>
     </div>
   </div>
 </div>
-</div>
+
+
+<script type="text/javascript" charset="utf-8">
+  PrivatePub.subscribe("<%= @roomaddress %>", function(data) {
+
+    if(data.username == "userjoin")
+    {
+      if(data.user1_id == "<%= @user_id %>")
+      {
+        //This means that the user is user 1
+        //Therefore display user 2 infomation
+        $('<li></li>').html("You have been connected with " + data.user1_name).appendTo('#chat');
+        $('<li></li>').html("Their issue is " + data.user1_issue).appendTo('#chat');
+        $('<li></li>').html("You have been connected with " + data.user2_name).appendTo('#chat');
+        $('<li></li>').html("Their issue is " + data.user2_issue).appendTo('#chat');
+      }else{
+        //This means that the user is user 2
+        //therefore display user 1 infomation
+        $('<li></li>').html("You have been connected with " + data.user1_name).appendTo('#chat');
+        $('<li></li>').html("Their issue is " + data.user1_issue).appendTo('#chat');
+        $('<li></li>').html("You have been connected with " + data.user2_name).appendTo('#chat');
+        $('<li></li>').html("Their issue is " + data.user2_issue).appendTo('#chat');
+      }
+
+    }else if(data.username == "lastjoin")
+    {
+      $.ajax({
+       type:'POST',
+       url: '/replyuserjoin'
+     });
+    }else if(data.msg == "replyme")
+    {
+
+    }
+    else
+    {
+      document.getElementById("chat").scrollTop = document.getElementById("chat").scrollHeight;
+      $('<li></li>').html(data.username + ": " + data.msg).appendTo('#chat');
+    }
+  });
+  setInterval(function() {
+  //The code for the checker program will go here!
+
+
+
+  }, 30000);
+  function namechangedfunction()
+  {
+
+    var username = document.getElementById('username_input').value;
+    $('#nav-bar-name').text(username);
+    $('#nametext1').text("Your current usernamme is: " + username);
+    $('#name').text(username);
+    $('#namechangedtext').text("Your name has been changed to: " + username);
+    $('#namechanged').modal('show');
+    $('#changename').modal('hide');
+  }
+  function issuechangedfunction()
+  {
+
+    var issue = document.getElementById('issue_input').value;
+    $('#issuetext1').text("Your current issue is: " + issue);
+    $('#issue').text(issue);
+    $('#issuechangedtext').text("Your issue has been changed to: " + issue);
+    $('#issuechanged').modal('show');
+    $('#changeissue').modal('hide');
+  }
+  $('#splashmodal').modal('show');
+</script>

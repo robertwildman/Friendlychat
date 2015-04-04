@@ -19,6 +19,19 @@
     cursor: pointer;
     cursor: hand;
 }
+.modal-splash-button
+{
+    display: inline;
+    cursor: pointer;
+    cursor: hand;
+    margin-left: 20px;
+}
+.modal-spalsh-buttongroup
+{
+    margin: 0 auto;
+    clear: both;
+    text-align: center;
+}
 body
 {
     background-color: #FFAE19;
