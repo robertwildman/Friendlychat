@@ -38,6 +38,7 @@ class MessagesController < ApplicationController
 
 
   def newroom
+
       free_users = User.where(:user_free =>  true)
       if free_users.count > 0
           #This gets the first user and starts the user_free boolean on both to false

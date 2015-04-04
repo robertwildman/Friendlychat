@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   # You can have the root of your site routed with "root"
-  root 'messages#splash'
+  root 'messages#index'
   post '/new_message' => 'messages#new_message', :as => :new_message
   post '/replyuserjoin' => 'messages#replyuserjoin'
   post '/userleft' => 'messages#userleft'
@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   post '/freshstart' => 'messages#newuser'
   post '/changename' => 'messages#changename'
   post '/changeissue' => 'messages#changeissue'
-  get '/home' => 'messages#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
