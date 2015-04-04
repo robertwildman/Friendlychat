@@ -38,7 +38,6 @@ class MessagesController < ApplicationController
 
 
   def newroom
-
       free_users = User.where(:user_free =>  true)
       if free_users.count > 0
           #This gets the first user and starts the user_free boolean on both to false
@@ -106,20 +105,17 @@ class MessagesController < ApplicationController
   helper_method :newroom
   helper_method :got_issue?
   helper_method :got_name?
+  helper_method :replyuserjoin
 
-  def send_message
-    PrivatePub.publish_to session[:room], :username => "send", :msg => " "
+  def send_checker_message
+    PrivatePub.publish_to session[:room], :username => "helpingchatchecker", :msg => session[:id]
   end
 
-  def receive_message
-    PrivatePub.publish_to session[:room], :username => "receive", :msg => " "
-  end
   def replyuserjoin
     PrivatePub.publish_to session[:room], :username => "userjoin", :current_user => session[:name]
     PrivatePub.publish_to session[:room], :username => "userjoin", :current_user => session[:other_name]
     render :nothing => true
   end
-   helper_method :replyuserjoin
   def chatreset
      current_user = User.where(:user_id => session[:id])
      current_user.first.update(user_free: false)

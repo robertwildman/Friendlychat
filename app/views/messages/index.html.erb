@@ -96,14 +96,14 @@
         <p>
           Hello and Welcome to Helping Chat! This website is here to help anyone that is dealing with an issue in their life. Its a simple anonmiouns chat program that allows you to talk to a random person that has an issue and you will work out both your issues together in a place where you can not be judged or anyone know who you are.If you ares till having issues after using this website please seak some help from a doctor as they can and will help you.
           <br>
-          You can find me on twitter here: <a href="https://www.twitter.com/robertwilman">@Robertwildman</a>
+          You can find me on twitter here: <a href="https://www.twitter.com/robertwilman">@Robertwildman</a>.
           <br>
-          You can email me at <a href="mailto:robertwildman@helpingchat.com?subject=website">robertwildman@helpingchat.com</a>.
+          You can email me at <a href="mailto:robertwildman@helpingchat.com?subject=Website Feedback">robertwildman@helpingchat.com</a>.
           <br>
-          Your current name: <span id = "name"><%= @name %></span>
+          Your current name: <span id = "name"><%= @name %></span>.
           <br>
           <% if got_issue? %>
-          Your current saved issue: <span id="issue"><%= @issue %></span>
+          Your current saved issue: <span id="issue"><%= @issue %></span>.
           <% else %>
           There is no issue saved for you, If you would like to add one please click on the button below.
           <% end %>
@@ -118,7 +118,7 @@
              <a data-toggle="modal" class="model-splash-link" data-target="#changeissue">Change Issue</a>
           </div>
           <div class="modal-splash-button">
-             <a onclick="jsfunction()" class="model-splash-link" href="javascript:void(0);"> Start Chatting</a>
+             <a onclick="startchattesty()" class="model-splash-link"> Start Chatting</a>
           </div>
         </div>
       </div>
@@ -340,9 +340,19 @@
     $('#namechanged').modal('show');
     $('#changename').modal('hide');
   }
-  function startchattesty
+  function startchattesty()
   {
+    alert('hello all');
+  }
+  function wasitsentbyme(sentid)
+  {
+    if(sentid == '<%= @userid =>')
+    {
 
+    }else
+    {
+
+    }
   }
   function issuechangedfunction()
   {
