@@ -35,11 +35,9 @@ class MessagesController < ApplicationController
   def splash
   end
 
-
-
   def newroom
-      free_users = User.where(:user_free =>  true)
-      if free_users.count > 0
+    free_users = User.where(:user_free =>  true)
+    if free_users.count > 0
           #This gets the first user and starts the user_free boolean on both to false
           other_user = free_users.first
           other_user.update(user_free: false)
@@ -51,7 +49,7 @@ class MessagesController < ApplicationController
           @channel = session[:room]
           session[:other_name] = "User " + other_user.user_id.to_s
           PrivatePub.publish_to @roomaddress, :username => "userjoin", :user1_id => current_user.user_id , :user1_name =>  current_user.user_name, :user1_issue => "Issue to be installed", :user2_id => other_user.user_id , :user2_name => other_user.user_name, :user2_issue => "Issue to be installed"
-          else
+    else
           #No user is currently free so it waits in a private room till the user is free
           current_user.update(user_free: true)
           temproomid = get_room_id
@@ -60,7 +58,7 @@ class MessagesController < ApplicationController
           session[:room] = "/messages/room/" + temproomid.to_s
           @channel = session[:room]
           @output = "You will need to wait for user to join!"
-      end
+    end
     current_user = User.where(:user_id => session[:id]).first
     free_users = User.where(:user_free =>  true)
     if free_users.count > 0
@@ -73,8 +71,6 @@ class MessagesController < ApplicationController
         @roomaddress = "/messages/room/" + temproomid.to_s
         session[:room] = "/messages/room/" + temproomid.to_s
         PrivatePub.publish_to @roomaddress, :username => "Helping Chat", :msg => "You have been connected with the a new user called: " + other_user.user_name
-
-
     else
         #No user is currently free so it waits in a private room till the user is free
         current_user.update(user_free: true)
@@ -84,12 +80,15 @@ class MessagesController < ApplicationController
         session[:room] = "/messages/room/" + temproomid.to_s
         flash[:output] ="Waiting for user...."
         PrivatePub.publish_to @roomaddress, :username => "Helping Chat", :msg => "You have been connected with the a new user called: " + other_user.user_name
-
-
-
     end
+    @roominfo = Room.new("12321","user1name","user2name","user1id","user2id")
+    respond_with @roominfo
   end
 
+  def testroom
+    @roominfo = Room.new("12321","user1name","user2name","user1id","user2id")
+    respond_with @roominfo
+  end
   def new_message
     @channel = session[:room]
     @message = {:username => session[:name], :msg => params[:message]}

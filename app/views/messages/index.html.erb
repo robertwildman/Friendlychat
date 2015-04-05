@@ -33,7 +33,7 @@
       <ul class = "nav nav-pills navbar-nav navbar-right">
         <li role="presentation" class="dropdown nav-link">
 
-          <a id="nav-bar"class="dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-expanded="false"> <span id="nav-bar-name"><%= @name %> </span><span class="caret"></span>
+          <a id="nav-bar"class="dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-expanded="false"> <span id="name"><%= @name %> </span><span class="caret"></span>
           </a>
           <ul class="dropdown-menu" role="menu">
            <li role="presentation"><a role="menuitem" data-toggle="modal" class="nav-link" data-target="#changename"> Change your name </a></li>
@@ -96,7 +96,7 @@
         <p>
           Hello and Welcome to Helping Chat! This website is here to help anyone that is dealing with an issue in their life. Its a simple anonmiouns chat program that allows you to talk to a random person that has an issue and you will work out both your issues together in a place where you can not be judged or anyone know who you are.If you ares till having issues after using this website please seak some help from a doctor as they can and will help you.
           <br>
-          You can find me on twitter here: <a href="https://www.twitter.com/robertwilman">@Robertwildman</a>.
+          You can find me on twitter here: <a href="https://www.twitter.com/robertwildman">@Robertwildman</a>.
           <br>
           You can email me at <a href="mailto:robertwildman@helpingchat.com?subject=Website Feedback">robertwildman@helpingchat.com</a>.
           <br>
@@ -140,7 +140,7 @@
           Hello and Welcome to Helping Chat! This website is here to help anyone that is dealing with an issue in their life. Its a simple anonmiouns chat program that allows you to talk to a random person that has an issue and you will work out both your issues together in a place where you can not be judged or anyone know who you are.
         </p>
         <br>
-        <p>You can find me on twitter here: <a href="https://www.twitter.com/robertwilman" "email me">@Robertwildman</a>
+        <p>You can find me on twitter here: <a href="https://www.twitter.com/robertwildman">@Robertwildman</a>
           <br>
           You can email me at robertwildman@helpingchat.com .
         </p>
@@ -285,84 +285,3 @@
 </div>
 
 
-<script type="text/javascript" charset="utf-8">
-  PrivatePub.subscribe("<%= @roomaddress %>", function(data) {
-
-    if(data.username == "userjoin")
-    {
-      if(data.user1_id == "<%= @user_id %>")
-      {
-        //This means that the user is user 1
-        //Therefore display user 2 infomation
-        $('<li></li>').html("You have been connected with " + data.user1_name).appendTo('#chat');
-        $('<li></li>').html("Their issue is " + data.user1_issue).appendTo('#chat');
-        $('<li></li>').html("You have been connected with " + data.user2_name).appendTo('#chat');
-        $('<li></li>').html("Their issue is " + data.user2_issue).appendTo('#chat');
-      }else{
-        //This means that the user is user 2
-        //therefore display user 1 infomation
-        $('<li></li>').html("You have been connected with " + data.user1_name).appendTo('#chat');
-        $('<li></li>').html("Their issue is " + data.user1_issue).appendTo('#chat');
-        $('<li></li>').html("You have been connected with " + data.user2_name).appendTo('#chat');
-        $('<li></li>').html("Their issue is " + data.user2_issue).appendTo('#chat');
-      }
-
-    }else if(data.username == "lastjoin")
-    {
-      $.ajax({
-       type:'POST',
-       url: '/replyuserjoin'
-     });
-    }else if(data.msg == "replyme")
-    {
-
-    }
-    else
-    {
-      document.getElementById("chat").scrollTop = document.getElementById("chat").scrollHeight;
-      $('<li></li>').html(data.username + ": " + data.msg).appendTo('#chat');
-    }
-  });
-  setInterval(function() {
-  //The code for the checker program will go here!
-
-
-
-  }, 30000);
-  function namechangedfunction()
-  {
-
-    var username = document.getElementById('username_input').value;
-    $('#nav-bar-name').text(username);
-    $('#nametext1').text("Your current usernamme is: " + username);
-    $('#name').text(username);
-    $('#namechangedtext').text("Your name has been changed to: " + username);
-    $('#namechanged').modal('show');
-    $('#changename').modal('hide');
-  }
-  function startchattesty()
-  {
-    alert('hello all');
-  }
-  function wasitsentbyme(sentid)
-  {
-    if(sentid == '<%= @userid =>')
-    {
-
-    }else
-    {
-
-    }
-  }
-  function issuechangedfunction()
-  {
-
-    var issue = document.getElementById('issue_input').value;
-    $('#issuetext1').text("Your current issue is: " + issue);
-    $('#issue').text(issue);
-    $('#issuechangedtext').text("Your issue has been changed to: " + issue);
-    $('#issuechanged').modal('show');
-    $('#changeissue').modal('hide');
-  }
-  $('#splashmodal').modal('show');
-</script>
