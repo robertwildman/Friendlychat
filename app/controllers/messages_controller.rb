@@ -81,12 +81,12 @@ class MessagesController < ApplicationController
         flash[:output] ="Waiting for user...."
         PrivatePub.publish_to @roomaddress, :username => "Helping Chat", :msg => "You have been connected with the a new user called: " + other_user.user_name
     end
-    @roominfo = Room.new("12321","user1name","user2name","user1id","user2id")
+    @roominfo = Room.new("12321","user1name","user2name","user1id","user2id","/public","First")
     respond_with @roominfo
   end
 
   def testroom
-    @roominfo = Room.new("12321","user1name","user2name","user1id","user2id")
+    @roominfo = Room.new("12321","user1name","user2name","user1id","user2id","/public","First")
     respond_with @roominfo
   end
   def new_message

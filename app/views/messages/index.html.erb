@@ -1,6 +1,7 @@
 <%= subscribe_to @roomaddress %>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <%= javascript_include_tag "http://localhost:9292/faye.js" %>
+<%= javascript_include_tag "messages" %>
 <!-- Nav bar -->
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
@@ -51,7 +52,7 @@
 <div class="maincontainer">
   <div class="panel panel-default chat-panel">
      <div class="panel-heading">
-      Your Chat:    <%= button_to @chatbutton, newroom_path,:remote => true,form_class: "pull-right"%>
+      Your Chat:   <input type="button" value="Start Chatting" onclick="startnewroom()" class="btn btn-large pull-right"/>
       </div>
       <div class="panel-body">
        <ul id="chat">
