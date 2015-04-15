@@ -1,11 +1,29 @@
 window.userFriendships = [];
 var roomaddress, roomempty;
 roomempty = true;
+
 $(document).ready(function() {
 
 	$("#newchatbutton").click(function(event) {
-		startnewroom();
+		  socket.emit('adduser');
 	});
+	$('#messagesend').click( function() {
+			var message = $('#messagetextinput').val();
+			$('#messagetextinput').val('');
+			// tell server to execute 'sendchat' and send along one parameter
+			socket.emit('sendchat', message);
+		});
+
+		// when the client hits ENTER on their keyboard
+		$('#messagetextinput').keypress(function(e) {
+			if(e.which == 13) {
+				$(this).blur();
+				$('#messagesend').focus().click();
+				$(this).focus();
+			}
+		});
+
+	// when the client clicks SEND
 
 
 	$('#splashmodal').modal('show');
@@ -73,6 +91,15 @@ function namechangedfunction() {
 }
 
 function startnewroom() {
+	$.ajax({
+		url: '/getstartinfo',
+		dataType: 'json',
+		type: 'GET',
+		success: function(data) {
+		socket.emit('adduser',data.roomaddress,data.username);
+		}
+		});
+
 	var roomstatus;
 	//First will need to get a roomid and return in to the class using ajax
 	subscribetoroom("/public");

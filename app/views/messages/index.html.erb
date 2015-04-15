@@ -1,18 +1,18 @@
 <%= subscribe_to @roomaddress %>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <%= javascript_include_tag "http://localhost:9292/faye.js" %>
-<%= javascript_include_tag "messages" %>
-<script src="/javascripts/application.js" type="text/javascript" charset="utf-8">
+<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+<script>
 var socket = io.connect('http://localhost:8080');
 
   // on connection to server, ask for user's name with an anonymous callback
   socket.on('connect', function(){
     // call the server-side function 'adduser' and send one parameter (value of prompt)
-    socket.emit('adduser', prompt("What's your name?"));
   });
   // listener, whenever the server emits 'updatechat', this updates the chat body
   socket.on('updatechat', function (username, data) {
-    $('#chat').append('<b>'+username + ':</b> ' + data + '<br>');
+    document.getElementById("chat").scrollTop = document.getElementById("chat").scrollHeight;
+    $('<li></li>').html(username + ": " + data).appendTo('#chat');
   });
 
 
@@ -77,18 +77,12 @@ var socket = io.connect('http://localhost:8080');
       </div>
       <div class="panel-body">
        <ul id="chat">
-        <li> User id is <%= @user_id %> </li>
-        <li> Room id is <%= @roomaddress %> </li>
-        <li><%=  @output %> </li>
-        <%= @error%>
       </ul>
      </div>
     <div class="panel-footer">
       <div class= "footer_inner center">
-        <%= form_tag new_message_path, :remote => true do %>
-        <%= text_field_tag :message , nil , :class => "message chat_message"%>
-        <%= submit_tag "Send" %>
-        <% end %>
+        <input id="messagetextinput" style="width:200px;" class="message chat_message"/>
+        <input type="button" id="messagesend" value="send" />
       </div>
     </div>
   </div>

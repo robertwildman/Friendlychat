@@ -1,8 +1,11 @@
 //This file will be the backend of the chat room
 //It will be running on node js
-var app = require('express').createServer()
-var io = require('socket.io').listen(app);
-app.listen(8080);
+var http = require('http');
+var express = require('express'), app = module.exports.app = express();
+
+var server = http.createServer(app);
+var io = require('socket.io').listen(server);
+server.listen(8080);
 
 // routing
 app.get('/', function (req, res) {
@@ -12,17 +15,15 @@ app.get('/', function (req, res) {
 io.sockets.on('connection', function (socket) {
 
 	// when the client emits 'adduser', this listens and executes
-	socket.on('adduser', function(username){
-		// store the username in the socket session for this client
+	socket.on('adduser', function(roomaddress,username){
+		socket.room = roomaddress
 		socket.username = username;
-		// store the room name in the socket session for this client
-		socket.room = '/public';
 		// send client to room 1
-		socket.join('/public');
+		socket.join(socket.room);
 		// echo to client they've connected
-		socket.emit('updatechat', 'SERVER', 'you have connected to /public');
+		socket.emit('updatechat', 'Helping Chat', 'You have connected to ' + socket.room);
 		// echo to room 1 that a person has connected to their room
-		socket.broadcast.to('/public').emit('updatechat', 'SERVER', username + ' has connected to this room');
+		socket.broadcast.to(socket.room ).emit('updatechat', 'Helping Chat', username + ' has connected to the room');
 	});
 
 	// when the client emits 'sendchat', this listens and executes
@@ -36,18 +37,18 @@ io.sockets.on('connection', function (socket) {
 		socket.leave(socket.room);
 		// join new room, received as function parameter
 		socket.join(newroom);
-		socket.emit('updatechat', 'SERVER', 'you have connected to '+ newroom);
+		socket.emit('updatechat', 'Helping Chat', 'you have connected to '+ newroom);
 		// sent message to OLD room
-		socket.broadcast.to(socket.room).emit('updatechat', 'SERVER', socket.username+' has left this room');
+		socket.broadcast.to(socket.room).emit('updatechat', 'Helping Chat', socket.username+' has left this room');
 		// update socket session room title
 		socket.room = newroom;
-		socket.broadcast.to(newroom).emit('updatechat', 'SERVER', socket.username+' has joined this room');
+		socket.broadcast.to(newroom).emit('updatechat', 'Helping Chat', socket.username+' has joined this room');
 	});
 
 	// when the user disconnects.. perform this
 	socket.on('disconnect', function(){
 		// echo globally that this client has left
-		socket.broadcast.emit('updatechat', 'SERVER', socket.username + ' has disconnected');
+		socket.broadcast.emit('updatechat', 'Helping Chat', socket.username + ' has disconnected');
 		socket.leave(socket.room);
 	});
 });

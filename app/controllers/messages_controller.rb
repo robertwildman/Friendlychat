@@ -1,11 +1,59 @@
 class MessagesController < ApplicationController
   respond_to :html, :json
+
+  def getstartinfo
+    #This will return all the starting infomation needed.
+     if(session[:id].nil? == true)
+      temp_user_id = get_user_id
+      temp_username = "Helpuser " + temp_user_id.to_s
+      session[:id] = temp_user_id
+      session[:name] = "User " + temp_user_id.to_s
+      User.create(user_id: temp_user_id ,user_free: false,user_name: temp_username)
+      current_user = User.where(:user_id => session[:id]).first
+    else
+      current_user = User.where(:user_id => session[:id]).first
+      if current_user.nil?
+        temp_user_id = get_user_id
+        session[:id] = temp_user_id
+        if session[:issue].nil?
+        User.create(user_id: temp_user_id ,user_free: false,user_name: session[:name])
+        else
+        User.create(user_id: temp_user_id ,user_free: false,user_name: session[:name],user_issue: session[:issue])
+        end
+        current_user = User.where(:user_id => session[:id]).first
+    end
+    @name = current_user.user_name
+    #Will find if there is a free room or not
+    free_users = User.where(:user_free =>  true)
+    if free_users.count > 0
+          #This gets the first user and starts the user_free boolean on both to false
+          other_user = free_users.first
+          other_user.update(user_free: false)
+          current_user.update(user_free: false)
+          #This then sends a message to the other user and this user to let them know that a user has been found
+          roomid = other_user.room_id
+          session[:room] = "/messages/room/" + roomid.to_s
+          @channel = session[:room]
+          status = "Full"
+     else
+          #No user is currently free so it waits in a private room till the user is free
+          current_user.update(user_free: true)
+          roomid = get_room_id
+          current_user.update(room_id: roomid)
+          session[:room] = "/messages/room/" + roomid.to_s
+          @channel = session[:room]
+          status = "Empty"
+    end
+    @roominfo = Room.new(session[:room],current_user.user_name,status)
+    respond_with @roominfo
+  end
+
+  end
   def index
     if(session[:id].nil? == true)
       temp_user_id = get_user_id
       temp_username = "Helpuser " + temp_user_id.to_s
       @user_id = temp_user_id
-      @chatbutton = "Start Chatting"
       @name = temp_username
       session[:id] = temp_user_id
       session[:name] = "User " + temp_user_id.to_s
@@ -29,12 +77,6 @@ class MessagesController < ApplicationController
       @issue = current_user.user_issue
       @user_id = current_user.user_id
     end
-  end
-
-  def sendjoinedmsg
-    @roomaddress = params[:roomaddress]
-    PrivatePub.publish_to @roomaddress ,:username => "Joinedinfo", :user1_id => params[:user1_id] , :user2_id => params[:user2_id]
-    render :nothing => true
   end
 
   def newroom

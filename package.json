@@ -1,0 +1,27 @@
+{
+  "name": "Helpingchat",
+  "version": "1.0.0",
+  "description": "Helping Chat ========= This is a website to help people talk about any issues in there life and at the same time they can help someone who is in need of their help. It will a very simple website desgin and the main feature is an anonumous chat feature which will only tell you two things about the person you are talking to which is the name they want to be called and what there issue is.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "express": "^4.12.3",
+    "socket.io": "^1.3.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/robertwildman/Friendlychat.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/robertwildman/Friendlychat/issues"
+  },
+  "homepage": "https://github.com/robertwildman/Friendlychat"
+}
