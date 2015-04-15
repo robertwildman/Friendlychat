@@ -2,6 +2,24 @@
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <%= javascript_include_tag "http://localhost:9292/faye.js" %>
 <%= javascript_include_tag "messages" %>
+<script src="/javascripts/application.js" type="text/javascript" charset="utf-8">
+var socket = io.connect('http://localhost:8080');
+
+  // on connection to server, ask for user's name with an anonymous callback
+  socket.on('connect', function(){
+    // call the server-side function 'adduser' and send one parameter (value of prompt)
+    socket.emit('adduser', prompt("What's your name?"));
+  });
+  // listener, whenever the server emits 'updatechat', this updates the chat body
+  socket.on('updatechat', function (username, data) {
+    $('#chat').append('<b>'+username + ':</b> ' + data + '<br>');
+  });
+
+
+  function switchRoom(room){
+    socket.emit('switchRoom', room);
+  }
+</script>
 <div id="Privatepub">
 
 </div>

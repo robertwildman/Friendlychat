@@ -2,6 +2,7 @@ window.userFriendships = [];
 var roomaddress, roomempty;
 roomempty = true;
 $(document).ready(function() {
+
 	$("#newchatbutton").click(function(event) {
 		startnewroom();
 	});
