@@ -27,12 +27,14 @@ class MessagesController < ApplicationController
       end
       @name = current_user.user_name
       @issue = current_user.user_issue
-      @chatbutton = "Start new Chat"
       @user_id = current_user.user_id
     end
   end
 
-  def splash
+  def sendjoinedmsg
+    @roomaddress = params[:roomaddress]
+    PrivatePub.publish_to @roomaddress ,:username => "Joinedinfo", :user1_id => params[:user1_id] , :user2_id => params[:user2_id]
+    render :nothing => true
   end
 
   def newroom
@@ -81,16 +83,16 @@ class MessagesController < ApplicationController
         flash[:output] ="Waiting for user...."
         PrivatePub.publish_to @roomaddress, :username => "Helping Chat", :msg => "You have been connected with the a new user called: " + other_user.user_name
     end
-    @roominfo = Room.new("12321","user1name","user2name","user1id","user2id","/public","First")
+    @roominfo = Room.new("12321","user1name","user2name","user1id","user2id","public","Second")
     respond_with @roominfo
   end
 
   def testroom
-    @roominfo = Room.new("12321","user1name","user2name","user1id","user2id","/public","First")
+    @roominfo = Room.new("12321","user1name","user2name","user1id","user2id","public","Second")
     respond_with @roominfo
   end
   def new_message
-    @channel = session[:room]
+    @channel = "/public"
     @message = {:username => session[:name], :msg => params[:message]}
     respond_to do |f|
       f.js

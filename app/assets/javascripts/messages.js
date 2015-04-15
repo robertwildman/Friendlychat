@@ -2,15 +2,6 @@ window.userFriendships = [];
 var roomaddress, roomempty;
 roomempty = true;
 $(document).ready(function() {
-
-	$.ajax({
-		url: '/testroom',
-		dataType: 'json',
-		type: 'GET',
-		success: function(data) {
-			window.userFriendships = data;
-		}
-	});
 	$("#newchatbutton").click(function(event) {
 		startnewroom();
 	});
@@ -20,8 +11,11 @@ $(document).ready(function() {
 });
 
 function subscribetoroom(roomaddressinput) {
-	PrivatePub.subscribe(roomaddressinput, function(data) {
-		if (roomaddressinput == roomaddress) {
+	alert("You have been subscribeed to " + roomaddressinput);
+	$('#Privatepub').append(" <%= subscribe_to" + "/public" + "=>")   ;
+	PrivatePub.subscribe("/public", function(data, channel) {
+		alert("inpout");
+
 			//Makes sure that the user is only showned the channel that they are currently talking to.
 			if (data.username == "userjoin") {
 				roomempty = false;
@@ -46,13 +40,16 @@ function subscribetoroom(roomaddressinput) {
 					type: 'POST',
 					url: '/replyuserjoin'
 				});
-			} else if (data.msg == "replyme") {
+			} else if (data.username == "Joinedinfo") {
+				window.joinedinput = data;
+				$('<li></li>').html("User 1 id " + data.user1_id).appendTo('#chat');
+				$('<li></li>').html("User 2 id " + data.user2_id).appendTo('#chat');
 
 			} else {
 				document.getElementById("chat").scrollTop = document.getElementById("chat").scrollHeight;
 				$('<li></li>').html(data.username + ": " + data.msg).appendTo('#chat');
 			}
-		}
+
 
 	});
 }
@@ -77,6 +74,7 @@ function namechangedfunction() {
 function startnewroom() {
 	var roomstatus;
 	//First will need to get a roomid and return in to the class using ajax
+	subscribetoroom("/public");
 	$.ajax({
 		url: '/testroom',
 		dataType: 'json',
@@ -94,19 +92,15 @@ function startnewroom() {
 				alert(roomempty);
 				dotcount = 0;
 				$('<li id="waitingtext"></li>').html("Waiting for user").appendTo('#chat');
-				while (roomempty == true) {
-					//This will be where you will let the user know that there room is empty
-						//Loading text made here
-						dotcount = dotcount + 1;
-						if (dotcount == 6) {
-							dotcount = 1;
-						}
-						$('#waitingtext').text("Waiting for user" + dotcountdisplay(dotcount));
-
-				}
-
 			} else if (roomstatus == "Second") {
-
+				//Will send a reply message to the user
+				$.ajax({
+				url: '/sendjoinedmsg',
+				data : {roomaddress: data.roomaddress ,user1_id: data.user1_id , user2_id: data.user2_id},
+				type: 'POST',
+				success: function(data) {
+				}
+				});
 			}
 		}
 	});
@@ -114,19 +108,8 @@ function startnewroom() {
 
 }
 
-function dotcountdisplay(dotnumber) {
-	if (dotnumber == 1) {
-		"."
-	} else if (dotnumber == 2) {
-		".."
-	} else if (dotnumber == 3) {
-		"..."
-	} else if (dotnumber == 4) {
-		"...."
-	} else if (dotnumber == 5) {
-		"....."
-	}
-}
+
+
 
 function wasitsentbyme(sentid) {
 	if (sentid == '<%= @userid =>') {

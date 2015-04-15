@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'messages#index'
   get '/testroom' => 'messages#testroom'
+  post '/sendjoinedmsg' => 'messages#sendjoinedmsg'
   post '/new_message' => 'messages#new_message', :as => :new_message
   post '/replyuserjoin' => 'messages#replyuserjoin'
   post '/userleft' => 'messages#userleft'

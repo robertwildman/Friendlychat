@@ -1,5 +1,5 @@
 // Clear message input
 $('#message').val('');
-
+alert("Message been sent to <%= @channel %>")
 // Send the message
 <% publish_to @channel, @message %>
