@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150212200935) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "messages", force: true do |t|
     t.string   "content"
     t.datetime "created_at"
@@ -20,8 +23,8 @@ ActiveRecord::Schema.define(version: 20150212200935) do
   end
 
   create_table "users", force: true do |t|
-    t.bigint  "user_id"
-    t.integer  "room_id"
+    t.integer  "user_id",    limit: 8
+    t.integer  "room_id",    limit: 8
     t.boolean  "user_free"
     t.string   "user_name"
     t.string   "user_issue"

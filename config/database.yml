@@ -7,10 +7,13 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: helpingchat_development
+  database: helpingchatdb
   pool: 5
-  username: myapp
-  password: password1
+  username:
+  password:
+  template: template0
+  host: localhost
+  port: 5432
 
 test:
   adapter: postgresql
