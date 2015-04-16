@@ -191,7 +191,8 @@ class MessagesController < ApplicationController
   protected
   def get_user_id
     user_tempid = rand(1..100000000000000)
-    if User.find_by user_id: user_tempid.nil?
+    userlist = User.find_by user_id: user_tempid
+    if userlist.nil?
       return get_user_id
 
     else
