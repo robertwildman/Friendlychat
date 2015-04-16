@@ -203,7 +203,7 @@ class MessagesController < ApplicationController
     room_tempid = rand(1..10000000)
     roomlist =  User.find_by room_id: room_tempid
     if roomlist.nil?
-      return room_tempidb
+      return room_tempid
     else
       get_room_id
 
