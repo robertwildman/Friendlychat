@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20150212200935) do
   end
 
   create_table "users", force: true do |t|
-    t.integer  "user_id"
+    t.bigint  "user_id"
     t.integer  "room_id"
     t.boolean  "user_free"
     t.string   "user_name"
