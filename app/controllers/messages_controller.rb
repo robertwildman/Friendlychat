@@ -193,19 +193,20 @@ class MessagesController < ApplicationController
     user_tempid = rand(1..100000000000000)
     userlist = User.find_by user_id: user_tempid
     if userlist.nil?
-      return get_user_id
+      return user_tempid
 
     else
-      return user_tempid
+       get_user_id
     end
   end
   def get_room_id
     room_tempid = rand(1..100000000000000)
-    if User.find_by room_id: room_tempid.nil?
-      return get_room_id
-
+    roomlist =  User.find_by room_id: room_tempid
+    if roomlist.nil?
+      return room_tempidb
     else
-      return room_tempid
+      get_room_id
+
     end
   end
 
