@@ -190,7 +190,7 @@ class MessagesController < ApplicationController
 
   protected
   def get_user_id
-    user_tempid = rand(1..100000000000000)
+    user_tempid = rand(1..10000000)
     userlist = User.find_by user_id: user_tempid
     if userlist.nil?
       return user_tempid
@@ -200,7 +200,7 @@ class MessagesController < ApplicationController
     end
   end
   def get_room_id
-    room_tempid = rand(1..100000000000000)
+    room_tempid = rand(1..10000000)
     roomlist =  User.find_by room_id: room_tempid
     if roomlist.nil?
       return room_tempidb
