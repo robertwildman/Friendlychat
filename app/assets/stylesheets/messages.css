@@ -195,6 +195,13 @@ body
 {
     width: 90%;
 }
+.navbar-nav{
+        margin: 0 auto;
+        display: table;
+        table-layout: fixed;
+        float:none;
+    }
+
 .message_button
 {
     width: 50px;
@@ -233,7 +240,14 @@ body
         margin-right: 0;
     }
 }
-
+@media (max-width: 767px) {
+    .navbar-fixed-top {
+        position: absolute;
+    }
+    .navbar-collapse {
+        max-height: none;
+    }
+}
 @media(min-width:1200px) {
     .chat-panel
     {
