@@ -4,7 +4,7 @@
 <%= javascript_include_tag "http://localhost:9292/faye.js" %>
 <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
 <script>
-var socket = io.connect('http://localhost:8080');
+var socket = io.connect('http://helpingchatbackend.herokuapp.com:8080');
 
   // on connection to server, ask for user's name with an anonymous callback
   socket.on('connect', function(){
