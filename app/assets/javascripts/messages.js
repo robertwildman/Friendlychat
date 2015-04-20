@@ -28,14 +28,7 @@ $(document).ready(function() {
 
 	$('#splashmodal').modal('show');
 });
-setInterval(function() {
-	//The code for the checker program will go here!
 
-
-
-}, 30000);
-$('#changename').modal('hide');
-}
 
 function startnewroom() {
 	$.ajax({
@@ -66,6 +59,8 @@ function namechangedfunction() {
 	$('#name').text(username);
 	$('#namechangedtext').text("Your name has been changed to: " + username);
 	$('#namechanged').modal('show');
+	$('#changename').modal('hide');
+}
 
 
 function issuechangedfunction() {
