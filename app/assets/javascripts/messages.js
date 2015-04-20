@@ -5,7 +5,7 @@ roomempty = true;
 $(document).ready(function() {
 
 	$("#newchatbutton").click(function(event) {
-		  socket.emit('adduser');
+		socket.emit('adduser');
 	});
 	$('#messagesend').click( function() {
 			var message = $('#messagetextinput').val();
