@@ -240,8 +240,13 @@ body
         margin-right: 0;
     }
 }
+
 @media (max-width: 767px) {
-    .navbar-fixed-top {
+    .model
+    {
+        position: relative;
+    }
+     .navbar-fixed-top {
         position: absolute;
     }
     .navbar-collapse {
