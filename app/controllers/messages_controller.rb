@@ -128,11 +128,6 @@ class MessagesController < ApplicationController
     @roominfo = Room.new("12321","user1name","user2name","user1id","user2id","public","Second")
     respond_with @roominfo
   end
-
-  def testroom
-    @roominfo = Room.new("12321","user1name","user2name","user1id","user2id","public","Second")
-    respond_with @roominfo
-  end
   def new_message
     @channel = "/public"
     @message = {:username => session[:name], :msg => params[:message]}
