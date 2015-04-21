@@ -1,6 +1,5 @@
 class MessagesController < ApplicationController
   respond_to :html, :json
-  skip_before_action :verify_authenticity_token
 
   def getstartinfo
     #This will return all the starting infomation needed.
