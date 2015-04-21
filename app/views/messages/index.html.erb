@@ -52,7 +52,7 @@ var socket = io.connect('http://helpingchatbackend.herokuapp.com');
           <a id="nav-bar"class="dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-expanded="false"> <span id="name"><%= @name %> </span><span class="caret"></span>
           </a>
           <ul class="dropdown-menu" role="menu">
-           <li role="presentation"><a role="menuitem" data-toggle="modal" class="nav-link" data-target="#changename"> Change your name </a></li>
+           <li role="presentation"><a role="menuitem" data-toggle="modal" class="nav-link" data-target="#changename"> Change your Name </a></li>
            <li role="presentation"><a role="menuitem" data-toggle="modal" class="nav-link" data-target="#changeissue"> Change issue </a></li>
          </ul>
        </li>
@@ -226,7 +226,7 @@ var socket = io.connect('http://helpingchatbackend.herokuapp.com');
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Change your name </h4>
+        <h4 class="modal-title" id="myModalLabel">Change your Name </h4>
       </div>
       <div class="modal-body">
         <p id="nametext1">Your current name is: <%= @name %> </p>
@@ -252,7 +252,7 @@ var socket = io.connect('http://helpingchatbackend.herokuapp.com');
         <h4 class="modal-title" id="myModalLabel">Name has been changed!</h4>
       </div>
       <div class="modal-body">
-        <p id ="namechangedtext">Your username has been changed to:</p>
+        <p id ="namechangedtext">Your Name has been changed to:</p>
       </div>
     </div>
   </div>
