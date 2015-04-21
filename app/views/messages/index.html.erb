@@ -3,7 +3,7 @@
 <%= javascript_include_tag "http://localhost:9292/faye.js" %>
 <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
 <script>
-var socket = io.connect('http://helpingchatbackend.herokuapp.com');
+  var socket = io.connect('http://helpingchatbackend.herokuapp.com');
 
   // on connection to server, ask for user's name with an anonymous callback
   socket.on('connect', function(){
@@ -49,15 +49,15 @@ var socket = io.connect('http://helpingchatbackend.herokuapp.com');
           <a data-toggle="modal" class="nav-link" data-target="#aboutmodel">About Us</a>
           <li role="presentation" class="dropdown nav-link">
 
-          <a id="nav-bar"class="dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-expanded="false"> <span id="name"><%= @name %> </span><span class="caret"></span>
-          </a>
-          <ul class="dropdown-menu" role="menu">
-           <li role="presentation"><a role="menuitem" data-toggle="modal" class="nav-link" data-target="#changename"> Change your Name </a></li>
-           <li role="presentation"><a role="menuitem" data-toggle="modal" class="nav-link" data-target="#changeissue"> Change issue </a></li>
-         </ul>
+            <a id="nav-bar"class="dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-expanded="false"> <span id="name"><%= @name %> </span><span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+             <li role="presentation"><a role="menuitem" data-toggle="modal" class="nav-link" data-target="#changename"> Change your Name </a></li>
+             <li role="presentation"><a role="menuitem" data-toggle="modal" class="nav-link" data-target="#changeissue"> Change issue </a></li>
+           </ul>
+         </li>
        </li>
-        </li>
-      </ul>
+     </ul>
    </div>
  </div>
 </nav>
@@ -67,30 +67,30 @@ var socket = io.connect('http://helpingchatbackend.herokuapp.com');
 <!-- /#sidebar-wrapper -->
 <div class="maincontainer">
   <div class="panel panel-default chat-panel">
-     <div class="panel-heading">
-      Your Chat:   <input type="button" value="Start Chatting" onclick="startnewroom()" class="btn btn-large pull-right"/>
-      </div>
-      <div class="panel-body">
-       <ul id="chat">
-      </ul>
-     </div>
-    <div class="panel-footer">
-      <div class= "footer_inner center">
-        <input id="messagetextinput" style="width:200px;" class="message chat_message"/>
-        <input type="button" id="messagesend" value="send" />
-      </div>
-    </div>
+   <div class="panel-heading">
+    Your Chat:   <input type="button" value="Start Chatting" onclick="startnewroom()" class="btn btn-large pull-right"/>
   </div>
+  <div class="panel-body">
+   <ul id="chat">
+   </ul>
+ </div>
+ <div class="panel-footer">
+  <div class= "footer_inner center">
+    <input id="messagetextinput" style="width:200px;" class="message chat_message"/>
+    <input type="button" id="messagesend" value="send" />
+  </div>
+</div>
+</div>
 
-  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <!-- Panel bottom -->
-  <ins class="adsbygoogle"
-  style="display:inline-block;width:728px;height:90px"
-  data-ad-client="ca-pub-2049126681125303"
-  data-ad-slot="1243058876"></ins>
-  <script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-  </script>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Panel bottom -->
+<ins class="adsbygoogle"
+style="display:inline-block;width:728px;height:90px"
+data-ad-client="ca-pub-2049126681125303"
+data-ad-slot="1243058876"></ins>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 <!-- End of the main container -->
 </div>
 
@@ -123,18 +123,18 @@ var socket = io.connect('http://helpingchatbackend.herokuapp.com');
       <div class="modal-footer">
         <div class="modal-spalsh-buttongroup">
           <div class="modal-splash-button">
-             <a data-toggle="modal" class="model-splash-link" data-target="#changename">Change Name</a>
-          </div>
-          <div class="modal-splash-button">
-             <a data-toggle="modal" class="model-splash-link" data-target="#changeissue">Change Issue</a>
-          </div>
-          <div class="modal-splash-button">
-             <a onclick="startchattesty()" class="model-splash-link"> Start Chatting</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+           <a data-toggle="modal" class="model-splash-link" data-target="#changename">Change Name</a>
+         </div>
+         <div class="modal-splash-button">
+           <a data-toggle="modal" class="model-splash-link" data-target="#changeissue">Change Issue</a>
+         </div>
+         <div class="modal-splash-button">
+           <a onclick="startchattesty()" class="model-splash-link"> Start Chatting</a>
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>
 </div>
 
 
