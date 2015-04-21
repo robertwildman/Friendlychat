@@ -1,17 +1,26 @@
 window.userFriendships = [];
 var roomaddress, roomempty;
 roomempty = true;
+userconnected = false;
 
 $(document).ready(function() {
 
 	$("#newchatbutton").click(function(event) {
+		$('#chat').html('');
 		socket.emit('adduser');
+		userconnected = true;
 	});
 	$('#messagesend').click( function() {
 			var message = $('#messagetextinput').val();
 			$('#messagetextinput').val('');
 			// tell server to execute 'sendchat' and send along one parameter
+			if(userconnected == false)
+			{
+				alert("You need to start chat before you can send messages!");
+			}else
+			{
 			socket.emit('sendchat', message);
+			}
 		});
 
 		// when the client hits ENTER on their keyboard
@@ -22,10 +31,6 @@ $(document).ready(function() {
 				$(this).focus();
 			}
 		});
-
-	// when the client clicks SEND
-
-
 	$('#splashmodal').modal('show');
 });
 
@@ -36,6 +41,8 @@ function startnewroom() {
 		dataType: 'json',
 		type: 'GET',
 		success: function(data) {
+		$('#chat').html('');
+		userconnected = true;
 		socket.emit('adduser',data.roomaddress,data.username);
 		}
 		});

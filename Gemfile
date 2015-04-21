@@ -23,8 +23,6 @@ gem 'spring',        group: :development
 gem "private_pub"
 gem 'thin'
 gem 'pg'
-gem 'bootstrap-sass', '~> 3.2.0'
-gem 'autoprefixer-rails'
 gem 'rails_12factor', group: :production
 gem 'puma'
 # Use ActiveModel has_secure_password

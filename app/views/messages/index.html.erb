@@ -1,9 +1,10 @@
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<%= javascript_include_tag "http://localhost:9292/faye.js" %>
+<%= stylesheet_link_tag("messages.css") %>
 <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
 <script>
   var socket = io.connect('http://helpingchatbackend.herokuapp.com');
+  //var socket = io.connect('http://localhost:8080');
 
   // on connection to server, ask for user's name with an anonymous callback
   socket.on('connect', function(){
@@ -20,6 +21,7 @@
     socket.emit('switchRoom', room);
   }
 </script>
+
 <!-- Nav bar -->
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
@@ -47,21 +49,27 @@
 
         <li class="nav-link">
           <a data-toggle="modal" class="nav-link" data-target="#aboutmodel">About Us</a>
-          <li role="presentation" class="dropdown nav-link">
-
-            <a id="nav-bar"class="dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-expanded="false"> <span id="name"><%= @name %> </span><span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu" role="menu">
-             <li role="presentation"><a role="menuitem" data-toggle="modal" class="nav-link" data-target="#changename"> Change your Name </a></li>
-             <li role="presentation"><a role="menuitem" data-toggle="modal" class="nav-link" data-target="#changeissue"> Change issue </a></li>
-           </ul>
-         </li>
+        </li>
+        <li class="dropdown nav-link">
+          <a id="nav-bar" class="dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-expanded="false"> <span id="name"><%= @name %> </span><span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu" role="menu">
+           <li role="presentation"><a role="menuitem" data-toggle="modal" class="nav-link" data-target="#changename"> Change your name </a></li>
+           <li role="presentation"><a role="menuitem" data-toggle="modal" class="nav-link" data-target="#changeissue"> Change issue </a></li>
+         </ul>
        </li>
      </ul>
    </div>
  </div>
 </nav>
-
+<div class="Testoutput">
+ <% @users.each do |users| %>
+      <tr>
+        <td><%= users.user_name %></td>
+        <td><%= users.user_free %></td>
+      </tr>
+    <% end %>
+</div>
 <!-- Main_Page -->
 <!-- Desktop side -->
 <!-- /#sidebar-wrapper -->

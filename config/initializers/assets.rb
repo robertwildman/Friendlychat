@@ -1,1 +1,1 @@
-Rails.application.config.assets.precompile += %w( messages.js )
+Rails.application.config.assets.precompile += %w( messages.css )

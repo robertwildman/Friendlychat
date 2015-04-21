@@ -1,5 +1,6 @@
 class MessagesController < ApplicationController
   respond_to :html, :json
+  skip_before_action :verify_authenticity_token
 
   def getstartinfo
     #This will return all the starting infomation needed.
@@ -76,6 +77,7 @@ class MessagesController < ApplicationController
       @name = current_user.user_name
       @issue = current_user.user_issue
       @user_id = current_user.user_id
+      @users = User.all
     end
   end
 
