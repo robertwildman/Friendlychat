@@ -16,7 +16,7 @@ io.sockets.on('connection', function (socket) {
 
 	// when the client emits 'adduser', this listens and executes
 	socket.on('adduser', function(roomaddress,username){
-		socket.room = roomaddress
+		socket.room = roomaddress;
 		socket.username = username;
 		// send client to room 1
 		socket.join(socket.room);
@@ -31,7 +31,10 @@ io.sockets.on('connection', function (socket) {
 		// we tell the client to execute 'updatechat' with 2 parameters
 		io.sockets.in(socket.room).emit('updatechat', socket.username, data);
 	});
-
+	socket.on('updatename', function(newname)
+	{
+		socket.username = newname;
+	});
 	socket.on('switchRoom', function(newroom){
 		// leave the current room (stored in session)
 		socket.leave(socket.room);

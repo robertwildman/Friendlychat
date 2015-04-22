@@ -41,9 +41,17 @@ function startnewroom() {
 		dataType: 'json',
 		type: 'GET',
 		success: function(data) {
-		$('#chat').html('');
-		userconnected = true;
-		socket.emit('adduser',data.roomaddress,data.username);
+			if(userconnected == true)
+			{
+				//User is currently in a chat
+				$('#chat').html('');
+				userconnected = true;
+				socket.emit('switchRoom',data.roomaddress,data.status);
+			}else{
+				$('#chat').html('');
+				userconnected = true;
+				socket.emit('adduser',data.roomaddress,data.username);
+			}
 		}
 		});
 }
@@ -67,6 +75,7 @@ function namechangedfunction() {
 	$('#namechangedtext').text("Your name has been changed to: " + username);
 	$('#namechanged').modal('show');
 	$('#changename').modal('hide');
+	socket.emit('updatename', username);
 }
 
 

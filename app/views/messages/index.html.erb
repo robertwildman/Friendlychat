@@ -3,8 +3,8 @@
 <%= stylesheet_link_tag("messages.css") %>
 <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
 <script>
-  var socket = io.connect('http://helpingchatbackend.herokuapp.com');
-  //var socket = io.connect('http://localhost:8080');
+  //var socket = io.connect('http://helpingchatbackend.herokuapp.com');
+  var socket = io.connect('http://localhost:8080');
 
   // on connection to server, ask for user's name with an anonymous callback
   socket.on('connect', function(){
@@ -12,9 +12,9 @@
   });
   // listener, whenever the server emits 'updatechat', this updates the chat body
   socket.on('updatechat', function (username, data) {
+     $('<li></li>').html(username + ": " + data).appendTo('#chat');
     document.getElementById("chat").scrollTop = document.getElementById("chat").scrollHeight;
-    $('<li></li>').html(username + ": " + data).appendTo('#chat');
-  });
+    });
 
 
   function switchRoom(room){
@@ -62,14 +62,6 @@
    </div>
  </div>
 </nav>
-<div class="Testoutput">
- <% @users.each do |users| %>
-      <tr>
-        <td><%= users.user_name %></td>
-        <td><%= users.user_free %></td>
-      </tr>
-    <% end %>
-</div>
 <!-- Main_Page -->
 <!-- Desktop side -->
 <!-- /#sidebar-wrapper -->
@@ -85,7 +77,7 @@
  <div class="panel-footer">
   <div class= "footer_inner center">
     <input id="messagetextinput" style="width:200px;" class="message chat_message"/>
-    <input type="button" id="messagesend" value="send" />
+    <input type="button" id="messagesend" value="Send" />
   </div>
 </div>
 </div>
