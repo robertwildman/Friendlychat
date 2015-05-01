@@ -245,6 +245,7 @@ body
 }
 
 @media (max-width: 767px) {
+    /* This is for the mobile website */
     .model
     {
         position: relative;
@@ -254,6 +255,15 @@ body
     }
     .navbar-collapse {
         max-height: none;
+    }
+    .adsbygoogle
+    {
+
+    }
+    #chat
+    {
+        margin-bottom: 10px;
+        margin-top: -10px;
     }
 }
 @media(min-width:1200px) {

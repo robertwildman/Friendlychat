@@ -4,12 +4,6 @@ roomempty = true;
 userconnected = false;
 
 $(document).ready(function() {
-
-	$("#newchatbutton").click(function(event) {
-		$('#chat').html('');
-		socket.emit('adduser');
-		userconnected = true;
-	});
 	$('#messagesend').click( function() {
 			var message = $('#messagetextinput').val();
 			$('#messagetextinput').val('');
@@ -20,6 +14,7 @@ $(document).ready(function() {
 			}else
 			{
 			socket.emit('sendchat', message);
+			$(this).focus();
 			}
 		});
 
@@ -87,4 +82,5 @@ function issuechangedfunction() {
 	$('#issuechangedtext').text("Your issue has been changed to: " + issue);
 	$('#issuechanged').modal('show');
 	$('#changeissue').modal('hide');
+	socket.emit('updateissue', issue);
 }
