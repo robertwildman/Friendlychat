@@ -267,7 +267,12 @@ body
     }
     .adsbygoogle
     {
-
+        bottom: 0;
+        position: absolute;
+    }
+    .maincontainer
+    {
+        margin-top: -100px;
     }
     #chat
     {
