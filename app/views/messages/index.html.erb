@@ -2,12 +2,16 @@
 <%= stylesheet_link_tag("messages.css") %>
 <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
 <script>
-  var socket = io.connect('http://helpingchatbackend.herokuapp.com');
-  //var socket = io.connect('http://localhost:8080');
+  //var socket = io.connect('http://helpingchatbackend.herokuapp.com');
+  var socket = io.connect('http://localhost:8080');
 
   // on connection to server, ask for user's name with an anonymous callback
   socket.on('connect', function(){
     // call the server-side function 'adduser' and send one parameter (value of prompt)
+  });
+   socket.on('replytonewuser', function(){
+    //When a user joins a chat a need to reply
+    socket.emit('replynewuser', $('#issue').text());
   });
   // listener, whenever the server emits 'updatechat', this updates the chat body
   socket.on('updatechat', function (username, data) {
@@ -67,8 +71,11 @@
 <div class="maincontainer">
   <div class="panel panel-default chat-panel">
    <div class="panel-heading">
-    Your Chat:   <input type="button" value="Start Chatting" onclick="startnewroom()" class="btn pull-right"/>
+    Your Chat:
+    <div id="chatbuttons" class = "chatbuttons pull-right">
+      <input type="button"  value="Start Chatting" onclick="startnewroom()" class="btn startchatbutton chat-button"/>
   </div>
+</div>
   <div class="panel-body">
    <ul id="chat">
    </ul>

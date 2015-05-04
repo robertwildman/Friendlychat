@@ -2,6 +2,6 @@ class Room
 	def initialize(roomaddress, username,userstatus)
      @roomaddress = roomaddress
      @username = username
-     @userstatus = userstatus
+     @roomstatus = userstatus
    end
 end

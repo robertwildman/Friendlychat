@@ -36,17 +36,23 @@ function startnewroom() {
 		dataType: 'json',
 		type: 'GET',
 		success: function(data) {
-			if(userconnected == true)
+		if(userconnected == true)
 			{
 				//User is currently in a chat
 				$('#chat').html('');
 				userconnected = true;
-				socket.emit('switchRoom',data.roomaddress,data.status);
+				socket.emit('switchRoom',data.roomaddress,$('#issue').text(),data.roomstatus);
 			}else{
 				$('#chat').html('');
 				userconnected = true;
-				socket.emit('adduser',data.roomaddress,data.username);
+				socket.emit('adduser',data.roomaddress,data.username,$('#issue').text(),data.roomstatus);
 			}
+			//This will display 2 buttons and remove the staret chatting button
+			//First button is View Person Second is new Person
+			$(".startchatbutton").remove();
+			$("#chatbuttons").append("<input type=\"button\"  value=\"View Person\" onclick=\"viewperson()\" class=\"btn startchatbutton chat-button\"/>");
+			$("#chatbuttons").append("<input type=\"button\"  value=\"New Person\" onclick=\"startnewroom()\" class=\"btn startchatbutton chat-button\"/>");
+
 		}
 		});
 }
