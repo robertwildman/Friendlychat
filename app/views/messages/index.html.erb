@@ -1,5 +1,4 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<%= stylesheet_link_tag("messages.css") %>
 <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
 <script>
   var socket = io.connect('http://helpingchatbackend.herokuapp.com');
@@ -40,19 +39,6 @@
 
     <div class="collapse navbar-collapse" id="mainnav">
       <ul class = "nav nav-pills navbar-nav">
-        <li class="nav-link">
-          <a data-toggle="modal" class="nav-link" data-target="#placeshelp">Other Places for Help</a>
-        </li>
-        <li class="nav-link">
-          <a data-toggle="modal" class="nav-link" data-target="#rules">Rules</a>
-        </li>
-        <li class="nav-link">
-          <a data-toggle="modal" class="nav-link" data-target="#startingquestions">Opening Questions</a>
-        </li>
-
-        <li class="nav-link">
-          <a data-toggle="modal" class="nav-link" data-target="#aboutmodel">About Us</a>
-        </li>
         <li class="dropdown nav-link">
           <a id="nav-bar" class="dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-expanded="false"> <span id="name"><%= @name %> </span><span class="caret"></span>
           </a>
@@ -69,6 +55,103 @@
 <!-- Desktop side -->
 <!-- /#sidebar-wrapper -->
 <div class="maincontainer">
+  <div class="column-center">
+    <div class="chat-header">
+      <h4 class="chat-header-text">You are chatting to: </h4>
+    </div>
+    Column center
+  </div>
+  <div class="column-left">
+    <div class ="left-option">
+      <div class = "left-option-head ">
+        <h4>Other Places <span class="caret"></span></h4>
+      </div>
+      <div class ="left-option-body">
+
+      </div>
+    </div>
+
+    <div class ="left-option">
+      <div class = "left-option-head ">
+        <h4>Rules <span class="caret"></span></h4>
+      </div>
+      <div class ="left-option-body">
+
+      </div>
+    </div>
+
+    <div class ="left-option">
+      <div class = "left-option-head ">
+        <h4>Starting Questions <span class="caret"></span></h4>
+      </div>
+      <div class ="left-option-body">
+
+      </div>
+    </div>
+
+    <div class ="left-option">
+      <div class = "left-option-head ">
+        <h4>About Us <span class="caret"></span></h4>
+      </div>
+      <div class ="left-option-body">
+          <p>
+        Helping Chat is a simple website to allow people with an issue to chat the issue out with someone else with an issue maybe like there may complete different and you together you will help each other with your own advice and expertice.
+      </p>
+      </div>
+
+    </div>
+
+    <div class ="left-option">
+     <div class = "left-option-head ">
+        <h4>Share Helping Chat <span class="caret"></span></h4>
+      </div>
+      <div class ="left-option-body">
+
+      </div>
+    </div>
+
+    <div class ="left-option">
+     <div class = "left-option-head ">
+        <h4><%= @name %> <span class="caret"></span></h4>
+      </div>
+      <div class ="left-option-body">
+
+      </div>
+    </div>
+
+    <div class ="left-option">
+     <div class = "left-option-head ">
+        <h4>Connected User <span class="caret"></span></h4>
+      </div>
+      <div class ="left-option-body">
+
+      </div>
+    </div>
+  </div>
+  <div class = "column-right">
+
+    <div class = "right-info">
+      <div class = "right-welcome-head ">
+        <h4>Welcome To Helping Chat!</h4>
+      </div>
+      <div class ="right-welcome-body">
+
+      </div>
+    </div>
+    <div class = "right-advert">
+      <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- Chat Lower -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-2049126681125303"
+           data-ad-slot="3966071276"
+           data-ad-format="auto"></ins>
+      <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+  </div>
+</div>
   <div class="panel panel-default chat-panel">
    <div class="panel-heading">
     Your Chat:
@@ -87,18 +170,9 @@
   </div>
 </div>
 </div>
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- Chat Lower -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-2049126681125303"
-     data-ad-slot="3966071276"
-     data-ad-format="auto"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
+
 <!-- End of the main container -->
-</div>
+
 
 
 <!--Splash Modal -->

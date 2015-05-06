@@ -2,6 +2,77 @@
 	margin: 0 auto;
 	float:none;
 }
+.left-option
+{
+    width:100%;
+    padding-top: 2px;
+}
+.right-option
+{
+    width:100%;
+    height:100%;
+}
+.maincontainer
+{
+    margin-top: -10px;
+    width:100%;
+    display:block;
+    height:100%;
+    background-color: whitesmoke;
+}
+.left-option-body
+{
+    display:none;
+}
+.column-left{
+    float: left;
+    width: 20%;
+    border: solid 1px #cccccc;
+    height:100%;
+}
+.column-right{
+    float: right;
+    width: 20%;
+    height:100%;
+}
+.column-center{
+    display: inline-block;
+    width: 60%;
+    height:100%;
+    background-color: white;
+    border: solid 1px #cccccc;
+}
+.right-info
+{
+    width:100%;
+    height:60%;
+    border: solid 1px #cccccc;
+}
+.right-advert
+{
+    width: 100%;
+    height: 40%;
+}
+.adsbygoogle
+{
+    margin-top: 20px;
+}
+.navbar
+{
+   background-color: white;
+   color: #FFAE19;
+}
+.navbar-brand
+{
+    color:white;
+    float:left;
+    font-size: 10;
+
+}
+.nav-link{
+
+    color:white;
+}
 .mastfoot
 {
 	max-width: 400px;
@@ -10,6 +81,32 @@
 .model
 {
     position: relative;
+}
+.left-option-head
+{
+    background-color: #FFAE19;
+    color:white;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.chat-header
+{
+    background-color: #3B5998;
+    color:white;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width:100%;
+}
+.chat-header-text
+{
+    max-width: 250px;
+}
+.right-welcome-head
+{
+    background-color: #FFAE19;
+    color:white;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 .modal-header
 {
@@ -45,9 +142,13 @@
     clear: both;
     text-align: center;
 }
+html
+{
+    height:100%;
+}
 body
 {
-    background-color: #FFAE19;
+    height: 90%;
     padding-top: 70px;
 }
 .chat_message
@@ -255,7 +356,19 @@ body
 
 @media (max-width: 767px) {
     /* This is for the mobile website */
-    .model
+    .column-left{
+        display:none;
+    }
+    .column-right{
+       display:none;
+    }
+    .column-center{
+        display: inline-block;
+        width: 100%;
+        height:100%;
+        border: solid 1px #cccccc;
+    }
+        .model
     {
         position: relative;
     }
@@ -271,10 +384,6 @@ body
         height: 100%;
         position: absolute;
     }
-    .maincontainer
-    {
-        margin-top: -100px;
-    }
     #chat
     {
         margin-bottom: 10px;
@@ -286,10 +395,6 @@ body
     {
         margin: auto;
         width: 1000px;
-    }
-    .adsbygoogle
-    {
-    margin-top: 90px;
     }
     .modal-dialog
     {
