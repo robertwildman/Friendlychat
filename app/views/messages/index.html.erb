@@ -28,7 +28,7 @@
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
     <div class = "navbar-header">
-      <p class = "navbar-brand"> Helping Chat </p>
+      <p class = "navbar-brand brand"> Helping Chat </p>
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mainnav" aria-expanded="false" aria-controls="navbar">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
@@ -37,18 +37,6 @@
       </button>
     </div>
 
-    <div class="collapse navbar-collapse" id="mainnav">
-      <ul class = "nav nav-pills navbar-nav">
-        <li class="dropdown nav-link">
-          <a id="nav-bar" class="dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-expanded="false"> <span id="name"><%= @name %> </span><span class="caret"></span>
-          </a>
-          <ul class="dropdown-menu" role="menu">
-           <li role="presentation"><a role="menuitem" data-toggle="modal" class="nav-link" data-target="#changename"> Change your name </a></li>
-           <li role="presentation"><a role="menuitem" data-toggle="modal" class="nav-link" data-target="#changeissue"> Change issue </a></li>
-         </ul>
-       </li>
-     </ul>
-   </div>
  </div>
 </nav>
 <!-- Main_Page -->
@@ -59,12 +47,18 @@
     <div class="chat-header">
       <h4 class="chat-header-text">You are chatting to: </h4>
     </div>
-    Column center
+    <div class="chat-footer">
+        <div class="chat-input-div">
+        <input type="button" id="messagesend" class="btn chat-button lightcoral pull-left" value="Start Chatting" />
+        <textarea id="messagetextinput" class="message chat_message"> </textarea>
+        <input type="button" id="messagesend" class="btn chat-button  cadetblue pull-right " value="Send" />
+        </div>
+    </div>
   </div>
   <div class="column-left">
-    <div class ="left-option">
+    <div class ="left-option top-option">
       <div class = "left-option-head ">
-        <h4>Other Places <span class="caret"></span></h4>
+        <h4>Other Places for Advice <span class="caret"></span></h4>
       </div>
       <div class ="left-option-body">
 
@@ -100,7 +94,14 @@
       </div>
 
     </div>
+    <div class ="left-option">
+     <div class = "left-option-head ">
+        <h4>Contact Us <span class="caret"></span></h4>
+      </div>
+      <div class ="left-option-body">
 
+      </div>
+    </div>
     <div class ="left-option">
      <div class = "left-option-head ">
         <h4>Share Helping Chat <span class="caret"></span></h4>
@@ -112,7 +113,7 @@
 
     <div class ="left-option">
      <div class = "left-option-head ">
-        <h4><%= @name %> <span class="caret"></span></h4>
+        <h4>Edit Your Information <span class="caret"></span></h4>
       </div>
       <div class ="left-option-body">
 
@@ -121,7 +122,7 @@
 
     <div class ="left-option">
      <div class = "left-option-head ">
-        <h4>Connected User <span class="caret"></span></h4>
+        <h4>View Connected User <span class="caret"></span></h4>
       </div>
       <div class ="left-option-body">
 
@@ -131,14 +132,6 @@
   <div class = "column-right">
 
     <div class = "right-info">
-      <div class = "right-welcome-head ">
-        <h4>Welcome To Helping Chat!</h4>
-      </div>
-      <div class ="right-welcome-body">
-
-      </div>
-    </div>
-    <div class = "right-advert">
       <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
       <!-- Chat Lower -->
       <ins class="adsbygoogle"
@@ -149,28 +142,9 @@
       <script>
       (adsbygoogle = window.adsbygoogle || []).push({});
       </script>
-    </div>
-  </div>
-</div>
-  <div class="panel panel-default chat-panel">
-   <div class="panel-heading">
-    Your Chat:
-    <div id="chatbuttons" class = "chatbuttons pull-right">
-      <input type="button"  value="Start Chatting" onclick="startnewroom()" class="btn startchatbutton chat-button"/>
-  </div>
-</div>
-  <div class="panel-body">
-   <ul id="chat">
-   </ul>
- </div>
- <div class="panel-footer">
-  <div class= "footer_inner center">
-    <input id="messagetextinput" style="width:200px;" class="message chat_message"/>
-    <input type="button" id="messagesend" class="btn" value="Send" />
   </div>
 </div>
 </div>
-
 <!-- End of the main container -->
 
 
