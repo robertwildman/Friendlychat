@@ -362,9 +362,13 @@ body
         padding-left: 1px;
         padding-right: 1px;
     }
+    .lightcoral
+    {
+        display:none;
+    }
     .chat_message
     {
-        width:55%;
+        width:77%;
     }
     .column-center{
         display: inline-block;
