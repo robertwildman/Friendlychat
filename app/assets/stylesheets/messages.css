@@ -9,10 +9,28 @@
     padding-left: 2px;
     padding-right: 2px;
 }
+.chat-body
+{
+    height: 100%;
+    margin-top:10px;
+}
+
 .right-option
 {
     width:100%;
     height:100%;
+}
+.left-option-link
+{
+    font-style: none;
+    text-decoration: none;
+    color: white;
+}
+.left-option-link:hover
+{
+    font-style: none;
+    text-decoration: none;
+    color: whitesmoke;
 }
 .chat-footer
 {
@@ -44,7 +62,11 @@
 }
 .left-option-body
 {
-    display:none;
+    margin: 0 auto;
+    background-color: cadetblue;
+    color:white;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 .chat_message
 {
@@ -60,21 +82,19 @@
 }
 .column-right{
     float: right;
-    width: 10%;
-    height:100%;
+    width: 15%;
+    height:90%;
+    margin-top: -80px;
 }
 .column-center{
     display: inline-block;
-    width: 65%;
+    width: 60%;
     position:relative;
     height:100%;
     border-radius: 10px;
     border: 20px solid cadetblue;
     background-color: white;
-}
-.adsbygoogle
-{
-    margin-top: 20px;
+    border-top: 0px;
 }
 .navbar
 {
@@ -124,7 +144,7 @@
 }
 .left-option-head
 {
-    background-color: #fb8521;
+    background-color: cadetblue;
     color:white;
     padding-top: 5px;
     padding-bottom: 5px;
@@ -133,23 +153,20 @@
 {
     background-color: cadetblue;
     color:white;
+    height: 60px;
     padding-top: 5px;
     padding-bottom: 5px;
     width:100%;
 }
 .chat-header-text
 {
-    max-width: 250px;
+    float: left;
     font-weight: 200;
     font-size: x-large;
 }
 .left-info
 {
     margin-bottom: 20px;
-}
-.right-info
-{
-    margin-top: 25%;
 }
 .chat_message
 {
@@ -158,7 +175,7 @@
     border-bottom-left-radius:10px;
     border-bottom-right-radius:10px;
     border:1px solid gray;
-    width:69%
+    width:80%
 }
 
 .right-welcome-head
@@ -170,8 +187,8 @@
 }
 .modal-header
 {
-    background-color: #fb8521;
-    color:white;
+    color: #fb8521;
+    background-color:whitesmoke;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 }
@@ -185,6 +202,19 @@
     color:white;
     padding:5px;
     white-space: normal;
+}
+.start-chat-button
+{
+    margin-top: 5px;
+    background-color: #fb8521;
+    font-weight: 100;
+    font-size: 1.5em;
+    color:white;
+    white-space: normal;
+}
+.close
+{
+    font-size: 30px;
 }
 .lightcoral
 {
@@ -210,6 +240,11 @@
     cursor: hand;
     margin-left: 20px;
 }
+.modal-title
+{
+  font-family: 'Comfortaa', cursive;
+  font-size: 23px;
+}
 .modal-spalsh-buttongroup
 {
     margin: 0 auto;
@@ -230,7 +265,7 @@ body
 .h4 , h4
 {
     font-family: 'Roboto', sans-serif;
-    font-weight: 300;
+    font-weight: 400;
 }
 .maincontainer
 {
@@ -241,7 +276,7 @@ body
 {
     overflow:hidden;
     overflow-y:auto;
-    max-height: 300px;
+    max-height: 345px;
 }
 #yourinfo
 {
@@ -294,7 +329,74 @@ body
     margin: 0 auto;
     float:none;
 }
+/* Bubble Code */
+.bubble {
+  position: absolute;
+  color:white;
+  display: table;
+  clear: both;
+}
 
+.bubble p {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: left;
+}
+.yourbubble
+{
+position: relative;
+max-width: 300px;
+height: 35px;
+padding: 8px;
+margin-right: 15px;
+background: #00BE00;
+-webkit-border-radius: 0px;
+-moz-border-radius: 0px;
+border-radius: 0px;
+}
+
+.yourbubble:after
+{
+content: '';
+position: absolute;
+border-style: solid;
+border-width: 10px 0 10px 20px;
+border-color: transparent #00BE00;
+display: block;
+width: 0;
+z-index: 1;
+margin-top: -10px;
+right: -20px;
+top: 70%;
+}
+
+.theirbubble
+{
+position: relative;
+max-width: 300px;
+height: 35px;
+margin-left: 15px;
+padding: 8px;
+background: #274BFF;
+-webkit-border-radius: 0px;
+-moz-border-radius: 0px;
+border-radius: 0px;
+}
+
+.theirbubble:after
+{
+content: '';
+position: absolute;
+border-style: solid;
+border-width: 10px 20px 10px 0;
+border-color: transparent #274BFF;
+display: block;
+width: 0;
+z-index: 1;
+margin-top: -10px;
+left: -20px;
+top: 81%;
+}
 
 
 @media(min-width:768px) {
@@ -362,10 +464,6 @@ body
         padding-left: 1px;
         padding-right: 1px;
     }
-    .lightcoral
-    {
-        display:none;
-    }
     .chat_message
     {
         width:77%;
@@ -408,5 +506,19 @@ body
     {
         width: 800px;
     }
+    .column-right{
+    float: right;
+    width: 10%;
+    height:100%;
+}
+.column-center{
+    display: inline-block;
+    width: 65%;
+    position:relative;
+    height:100%;
+    border-radius: 10px;
+    border: 20px solid cadetblue;
+    background-color: white;
+}
 
 }

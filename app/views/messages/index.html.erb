@@ -1,8 +1,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
 <script>
-  var socket = io.connect('http://helpingchatbackend.herokuapp.com');
-  //var socket = io.connect('http://localhost:8080');
+  //var socket = io.connect('http://helpingchatbackend.herokuapp.com');
+  var socket = io.connect('http://localhost:8080');
 
   // on connection to server, ask for user's name with an anonymous callback
   socket.on('connect', function(){
@@ -14,7 +14,9 @@
   });
   // listener, whenever the server emits 'updatechat', this updates the chat body
   socket.on('updatechat', function (username, data) {
-     $('<li></li>').html(username + ": " + data).appendTo('#chat');
+     pmessage = $("<p><p>").append(data);
+      $("<div></div>").attr('class','theirbubble bubble pull-left').append(pmessage).appendTo('#chat');
+      $("<br>").appendTo('#chat');
     document.getElementById("chat").scrollTop = document.getElementById("chat").scrollHeight;
     });
 
@@ -46,10 +48,19 @@
   <div class="column-center">
     <div class="chat-header">
       <h4 class="chat-header-text">You are chatting to: </h4>
+      <input type="button" id="startchat" class="btn start-chat-button lightcoral pull-right" value="Start Chatting" />
+    </div>
+    <div class="chat-body" id ="chat" >
+      <div class="bubble yourbubble pull-right">
+        <p> Checking to see if the bubbles will resize or if they will just break bla bla bla bla bla</p>
+      </div>
+      <br>
+      <div class="theirbubble bubble pull-left">
+        <p> Checking to see if the bubbles will resize or if they will just break bla bla bla bla bla</p>
+      </div>
     </div>
     <div class="chat-footer">
         <div class="chat-input-div">
-        <input type="button" id="messagesend" class="btn chat-button lightcoral pull-left" value="Start Chatting" />
         <textarea id="messagetextinput" class="message chat_message"> </textarea>
         <input type="button" id="messagesend" class="btn chat-button  cadetblue pull-right " value="Send" />
         </div>
@@ -58,7 +69,7 @@
   <div class="column-left">
     <div class ="left-option top-option">
       <div class = "left-option-head ">
-        <h4>Other Places for Advice <span class="caret"></span></h4>
+        <a data-toggle="modal" href="#placeshelp" class="left-option-link" > <h4>Other Places for Advice <span class="caret"></span></h4> </a>
       </div>
       <div class ="left-option-body">
 
@@ -67,7 +78,7 @@
 
     <div class ="left-option">
       <div class = "left-option-head ">
-        <h4>Rules <span class="caret"></span></h4>
+      <a data-toggle="modal" href="#rules" class="left-option-link" > <h4>Rules <span class="caret"></span></h4> </a>
       </div>
       <div class ="left-option-body">
 
@@ -76,7 +87,7 @@
 
     <div class ="left-option">
       <div class = "left-option-head ">
-        <h4>Starting Questions <span class="caret"></span></h4>
+        <a data-toggle="modal" href="#startingquestions" class="left-option-link" > <h4>Starting Questions <span class="caret"></span></h4> </a>
       </div>
       <div class ="left-option-body">
 
@@ -85,18 +96,12 @@
 
     <div class ="left-option">
       <div class = "left-option-head ">
-        <h4>About Us <span class="caret"></span></h4>
+        <a data-toggle="modal" href="#aboutmodal" class="left-option-link" > <h4>About Us <span class="caret"></span></h4> </a>
       </div>
-      <div class ="left-option-body">
-          <p>
-        Helping Chat is a simple website to allow people with an issue to chat the issue out with someone else with an issue maybe like there may complete different and you together you will help each other with your own advice and expertice.
-      </p>
-      </div>
-
     </div>
     <div class ="left-option">
      <div class = "left-option-head ">
-        <h4>Contact Us <span class="caret"></span></h4>
+     <a data-toggle="modal" href="#contactus" class="left-option-link" > <h4>Contact Us <span class="caret"></span></h4> </a>
       </div>
       <div class ="left-option-body">
 
@@ -104,28 +109,15 @@
     </div>
     <div class ="left-option">
      <div class = "left-option-head ">
-        <h4>Share Helping Chat <span class="caret"></span></h4>
-      </div>
-      <div class ="left-option-body">
-
+        <a data-toggle="modal" href="#contactus" class="left-option-link" > <h4>Edit Your Infomation <span class="caret"></span></h4> </a>
       </div>
     </div>
-
     <div class ="left-option">
      <div class = "left-option-head ">
-        <h4>Edit Your Information <span class="caret"></span></h4>
+        <h4>Spread the word about Helping Chat! </h4>
       </div>
       <div class ="left-option-body">
-
-      </div>
-    </div>
-
-    <div class ="left-option">
-     <div class = "left-option-head ">
-        <h4>View Connected User <span class="caret"></span></h4>
-      </div>
-      <div class ="left-option-body">
-
+        <div class="addthis_sharing_toolbox"></div>
       </div>
     </div>
   </div>
@@ -193,7 +185,7 @@
 
 
 <!-- About Us -->
-<div class="modal fade" id="aboutmodel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="aboutmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -213,7 +205,27 @@
     </div>
   </div>
 </div>
-
+<!-- Contact Us -->
+<div class="modal fade" id="contactus" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Contact Us</h4>
+      </div>
+      <div class="modal-body">
+        <p>
+          Hello and Welcome to Helping Chat! This website is here to help anyone that is dealing with an issue in their life. Its a simple anonmiouns chat program that allows you to talk to a random person that has an issue and you will work out both your issues together in a place where you can not be judged or anyone know who you are.
+        </p>
+        <br>
+        <p>You can find me on twitter here: <a href="https://www.twitter.com/robertwildman">@Robertwildman</a>
+          <br>
+          You can email me at robertwildman@helpingchat.com .
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- Starting Questions -->
 <div class="modal fade" id="startingquestions" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">

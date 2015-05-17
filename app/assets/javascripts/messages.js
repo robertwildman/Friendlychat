@@ -14,6 +14,10 @@ $(document).ready(function() {
 			}else
 			{
 			socket.emit('sendchat', message);
+			pmessage = $("<p><p>").append(message);
+			$("<div></div>").attr('class','yourbubble bubble pull-right').append(pmessage).appendTo('#chat');
+			$("<br>").appendTo('#chat');
+			document.getElementById("chat").scrollTop = document.getElementById("chat").scrollHeight;
 			$(this).focus();
 			}
 		});
@@ -25,6 +29,10 @@ $(document).ready(function() {
 				$('#messagesend').focus().click();
 				$(this).focus();
 			}
+		});
+	$('#startchat').click(function(event) {
+		alert("I have been clicked");
+			startnewroom();
 		});
 	$('#splashmodal').modal('show');
 });
@@ -50,9 +58,6 @@ function startnewroom() {
 			//This will display 2 buttons and remove the staret chatting button
 			//First button is View Person Second is new Person
 			$(".startchatbutton").remove();
-			$("#chatbuttons").append("<input type=\"button\"  value=\"View Person\" onclick=\"viewperson()\" class=\"btn startchatbutton chat-button\"/>");
-			$("#chatbuttons").append("<input type=\"button\"  value=\"New Person\" onclick=\"startnewroom()\" class=\"btn startchatbutton chat-button\"/>");
-
 		}
 		});
 }
