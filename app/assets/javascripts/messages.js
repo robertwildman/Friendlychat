@@ -14,7 +14,7 @@ $(document).ready(function() {
 			}else
 			{
 			socket.emit('sendchat', message);
-			pmessage = $("<p><p>").append(message);
+			pmessage = $("<p></p>").append(message);
 			$("<div></div>").attr('class','yourbubble bubble pull-right').append(pmessage).appendTo('#chat');
 			$("<br>").appendTo('#chat');
 			document.getElementById("chat").scrollTop = document.getElementById("chat").scrollHeight;
@@ -31,8 +31,15 @@ $(document).ready(function() {
 			}
 		});
 	$('#startchat').click(function(event) {
-		alert("I have been clicked");
 			startnewroom();
+		});
+	$('#startchatting').click(function(event) {
+		name = $('#chat_username_input').val();
+		issue = $('#chat_issue_input').val();
+		if(name.length > 0 && issue.length > 0)
+		{
+			startnewroom();
+		}
 		});
 	$('#splashmodal').modal('show');
 });
@@ -44,8 +51,7 @@ function startnewroom() {
 		dataType: 'json',
 		type: 'GET',
 		success: function(data) {
-		if(userconnected == true)
-			{
+		if(userconnected == true){
 				//User is currently in a chat
 				$('#chat').html('');
 				userconnected = true;

@@ -8,18 +8,21 @@
   socket.on('connect', function(){
     // call the server-side function 'adduser' and send one parameter (value of prompt)
   });
+  socket.on('helpingchatmessage', function(data){
+    $("<div></div>").attr('class','helpingchatbubble bubble').append($("<p></p>").append(data)).appendTo('#chat');
+    $("<br>").appendTo('#chat');
+    document.getElementById("chat").scrollTop = document.getElementById("chat").scrollHeight;
+  });
    socket.on('replytonewuser', function(){
     //When a user joins a chat a need to reply
     socket.emit('replynewuser', $('#issue').text());
   });
   // listener, whenever the server emits 'updatechat', this updates the chat body
   socket.on('updatechat', function (username, data) {
-     pmessage = $("<p><p>").append(data);
-      $("<div></div>").attr('class','theirbubble bubble pull-left').append(pmessage).appendTo('#chat');
-      $("<br>").appendTo('#chat');
+    $("<div></div>").attr('class','theirbubble bubble pull-left').append($("<p></p>").append(data)).appendTo('#chat');
+    $("<br>").appendTo('#chat');
     document.getElementById("chat").scrollTop = document.getElementById("chat").scrollHeight;
-    });
-
+  });
 
   function switchRoom(room){
     socket.emit('switchRoom', room);
@@ -27,19 +30,18 @@
 </script>
 
 <!-- Nav bar -->
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container">
-    <div class = "navbar-header">
+ <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
       <p class = "navbar-brand brand"> Helping Chat </p>
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mainnav" aria-expanded="false" aria-controls="navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-    </div>
-
- </div>
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <!-- /.navbar-collapse -->
 </nav>
 <!-- Main_Page -->
 <!-- Desktop side -->
@@ -48,16 +50,24 @@
   <div class="column-center">
     <div class="chat-header">
       <h4 class="chat-header-text">You are chatting to: </h4>
-      <input type="button" id="startchat" class="btn start-chat-button lightcoral pull-right" value="Start Chatting" />
+      <input type="button" id="startchat" class="btn start-chat-button lightcoral pull-right" value="New Person" />
     </div>
     <div class="chat-body" id ="chat" >
-      <div class="bubble yourbubble pull-right">
-        <p> Checking to see if the bubbles will resize or if they will just break bla bla bla bla bla</p>
-      </div>
-      <br>
-      <div class="theirbubble bubble pull-left">
-        <p> Checking to see if the bubbles will resize or if they will just break bla bla bla bla bla</p>
-      </div>
+        <div class="chat-before helpingchatbubble">
+          <h4>Hello, We ask that you enter in a name that you wish to be called and also a little bit about how your current feeling so the other person has a small idea to start chatting about it.</h4>
+        </div>
+        <div class="chat-before helpingchatbubble">
+          <%= form_tag(changeboth_path, method: "Post" ,:remote => true) do %>
+        <div class = "form-group">
+          <h4 class="pull-left">Name:</h4>
+          <%= text_field_tag :name,@name, :required => true,:placeholder => "Enter Name",:id => "chat_username_input",:class => 'form-control'%>
+          <br>
+          <h4 class="pull-left">Feeling:</h4>
+          <%= text_field_tag :issue,@issue, :required => true,:placeholder => "Enter your feelings",:id => "chat_issue_input",:class => 'form-control'%>
+        </div>
+         <%= submit_tag "Start Chatting.",:class => 'btn btn-lg btn-block btn-default namechange-button add-topic-btn',:id => "startchatting"%>
+        <% end %>
+        </div>
     </div>
     <div class="chat-footer">
         <div class="chat-input-div">
@@ -151,19 +161,20 @@
       </div>
       <div class="modal-body">
         <p>
-          Hello and Welcome to Helping Chat! This website is here to help anyone that is dealing with an issue in their life. Its a simple anonmiouns chat program that allows you to talk to a random person that has an issue and you will work out both your issues together in a place where you can not be judged or anyone know who you are.If you ares till having issues after using this website please seak some help from a doctor as they can and will help you.
+          Hello and Welcome to Helping Chat! I hope that you are feeling good today but if your not don't worry their is many people going though the same as you or similarly and their waiting to chat about their issue and yours so you can help make each other feel better.
           <br>
-          You can find me on twitter here: <a href="https://www.twitter.com/robertwildman">@Robertwildman</a>.
           <br>
-          You can email me at <a href="mailto:robertwildman@helpingchat.com?subject=Website Feedback">robertwildman@helpingchat.com</a>.
+          You will be able to chat to someone that may have been though something like you are currently going though and they might be able to give you some help and advice on how you can feel better and help you get out of the dark spire that you may be in. At the same time you will be helping them if their issues.
           <br>
-          Your current name: <span id = "name"><%= @name %></span>.
           <br>
-          <% if got_issue? %>
-          Your current saved issue: <span id="issue"><%= @issue %></span>.
-          <% else %>
-          There is no issue saved for you, If you would like to add one please click on the button below.
-          <% end %>
+          If you want to give feedback about the website please tweet me or email me.
+          <br>
+          Twitter: <a href="https://www.twitter.com/robertwildman">@Robertwildman</a>.
+          <br>
+          Email: <a href="mailto:robertwildman@helpingchat.com?subject=Website Feedback">robertwildman@helpingchat.com</a>
+          <br>
+          <br>
+          <h5> Please Share Helping Chat as you might be able to help someone that needs to chat about whats currently going though their mind. <h5>
         </p>
       </div>
       <div class="modal-footer">
