@@ -1,0 +1,36 @@
+.brand
+{
+	color: #fb8521 !important;
+	float: none;
+	font-family: 'Comfortaa', cursive;
+	font-size: 80px;
+	margin: 0 auto;
+	position: absolute;
+  	top: 50%;
+  	left: 50%;
+  	transform: translate(-50%, -50%);
+  	background-color: none;
+}
+.maincontainer
+{
+	background-color: transparent;
+ height:100%;
+  position: relative;
+ width:100%;
+}
+body
+{
+	height:100%;
+	width:100%;
+	background-color: transparent;
+}
+html {
+  background: url(/assets/splash1.jpeg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height:100%;
+  width:100%;
+}
+
