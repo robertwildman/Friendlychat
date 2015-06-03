@@ -1,20 +1,28 @@
 .brand
 {
 	color: #fb8521 !important;
-	float: none;
 	font-family: 'Comfortaa', cursive;
-	font-size: 80px;
+	font-size:100px;
+	font-weight: 800;
+  	background-color: none;
+}
+.splash-info
+{
+	width:70%;
+	font-size: large;
+	color: #fb8521 !important;
+	font-family: 'Comfortaa', cursive;
 	margin: 0 auto;
 	position: absolute;
   	top: 50%;
   	left: 50%;
   	transform: translate(-50%, -50%);
-  	background-color: none;
 }
 .maincontainer
 {
 	background-color: transparent;
  height:100%;
+ text-align: center;
   position: relative;
  width:100%;
 }
@@ -25,7 +33,7 @@ body
 	background-color: transparent;
 }
 html {
-  background: url(/assets/splash1.jpeg) no-repeat center center fixed;
+  background: url(/assets/splash2.jpeg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -33,4 +41,22 @@ html {
   height:100%;
   width:100%;
 }
+
+@media (max-width: 767px) {
+    /* This is for the mobile website */
+    .brand
+    {
+    	font-size: 60px;
+    }
+    .splash-info
+    {
+    	font-size: medium;
+    	display:block;
+    	margin-top:50px;
+  		top: inherit;
+  		left: inherit;
+  		transform: translate(0, 0);
+    }
+}
+
 
