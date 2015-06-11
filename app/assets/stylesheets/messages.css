@@ -537,3 +537,18 @@ top: 70%;
 }
 
 }
+body
+{
+    height:100%;
+    width:100%;
+    background-color: transparent;
+}
+html {
+  background: url(/assets/splash2.jpeg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height:100%;
+  width:100%;
+}

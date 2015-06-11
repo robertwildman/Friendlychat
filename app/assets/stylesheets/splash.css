@@ -2,21 +2,20 @@
 {
 	color: #fb8521 !important;
 	font-family: 'Comfortaa', cursive;
-	font-size:100px;
+	font-size:60px;
 	font-weight: 800;
-  	background-color: none;
+  background-color: none;
 }
 .splash-info
 {
 	width:70%;
-	font-size: large;
-	color: #fb8521 !important;
-	font-family: 'Comfortaa', cursive;
+	font-size: medium;
+  display:block;
 	margin: 0 auto;
-	position: absolute;
-  	top: 50%;
-  	left: 50%;
-  	transform: translate(-50%, -50%);
+}
+.splash-info-mobile
+{
+  display: none;
 }
 .maincontainer
 {
@@ -46,16 +45,18 @@ html {
     /* This is for the mobile website */
     .brand
     {
-    	font-size: 60px;
+    	font-size: 40px;
+    }
+    .splash-info-mobile
+    {
+    	display:block;
+    	margin-top:50px;
+      font-size: small;
+      padding-bottom: 50px;
     }
     .splash-info
     {
-    	font-size: medium;
-    	display:block;
-    	margin-top:50px;
-  		top: inherit;
-  		left: inherit;
-  		transform: translate(0, 0);
+      display: none;
     }
 }
 
