@@ -9,7 +9,7 @@
 
   // on connection to server, ask for user's name with an anonymous callback
   socket.on('connect', function(){
-    // call the server-side function 'adduser' and send one parameter (value of prompt)
+    // call the server-scide function 'adduser' and send one parameter (value of prompt)
   });
   socket.on('helpingchatmessage', function(data){
     $("<div></div>").attr('class','helpingchatbubble bubble').append($("<p></p>").append(data)).appendTo('#chat');
@@ -31,21 +31,6 @@
     socket.emit('switchRoom', room);
   }
 </script>
-
-<!-- Nav bar -->
- <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-      <p class = "navbar-brand brand"> Helping Chat </p>
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-      </div>
-      <!-- /.navbar-collapse -->
-</nav>
 <!-- Main_Page -->
 <!-- Desktop side -->
 <!-- /#sidebar-wrapper -->
@@ -80,62 +65,32 @@
     </div>
   </div>
   <div class="column-left">
-    <div class ="left-option top-option">
-      <div class = "left-option-head ">
+    <ul class="left-list">
+      <li class="left-list-item item-header">
+        <p class="brand">Helping Chat</p>
+      </li>
+      <li class="left-list-item">
         <a data-toggle="modal" href="#placeshelp" class="left-option-link" > <h4>Other Places for Advice <span class="caret"></span></h4> </a>
-      </div>
-      <div class ="left-option-body">
-
-      </div>
-    </div>
-
-    <div class ="left-option">
-      <div class = "left-option-head ">
-      <a data-toggle="modal" href="#rules" class="left-option-link" > <h4>Rules <span class="caret"></span></h4> </a>
-      </div>
-      <div class ="left-option-body">
-
-      </div>
-    </div>
-
-    <div class ="left-option">
-      <div class = "left-option-head ">
+      </li>
+      <li class="left-list-item">
+        <a data-toggle="modal" href="#rules" class="left-option-link" > <h4>Rules <span class="caret"></span></h4> </a>
+      </li>
+      <li class="left-list-item">
         <a data-toggle="modal" href="#startingquestions" class="left-option-link" > <h4>Starting Questions <span class="caret"></span></h4> </a>
-      </div>
-      <div class ="left-option-body">
-
-      </div>
-    </div>
-
-    <div class ="left-option">
-      <div class = "left-option-head ">
+      </li>
+      <li class="left-list-item">
         <a data-toggle="modal" href="#aboutmodal" class="left-option-link" > <h4>About Us <span class="caret"></span></h4> </a>
-      </div>
-    </div>
-    <div class ="left-option">
-     <div class = "left-option-head ">
-     <a data-toggle="modal" href="#contactus" class="left-option-link" > <h4>Contact Us <span class="caret"></span></h4> </a>
-      </div>
-      <div class ="left-option-body">
-
-      </div>
-    </div>
-    <div class ="left-option">
-     <div class = "left-option-head ">
-        <a data-toggle="modal" href="#contactus" class="left-option-link" > <h4>Edit Your Infomation <span class="caret"></span></h4> </a>
-      </div>
-    </div>
-    <div class ="left-option">
-     <div class = "left-option-head ">
+      </li>
+      <li class="left-list-item">
+        <a data-toggle="modal" href="#contactus" class="left-option-link" > <h4>Contact Us <span class="caret"></span></h4> </a>
+      </li>
+      <li class="left-list-item item-last">
         <h4>Spread the word about Helping Chat! </h4>
-      </div>
-      <div class ="left-option-body">
         <div class="addthis_sharing_toolbox"></div>
-      </div>
-    </div>
+      </li>
+    </ul>
   </div>
   <div class = "column-right">
-
     <div class = "right-info">
       <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
       <!-- Chat Lower -->
