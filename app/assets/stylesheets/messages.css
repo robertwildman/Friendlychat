@@ -9,13 +9,13 @@
 {
     font-style: none;
     text-decoration: none;
-    color: black;
+    color: white;
 }
 .left-option-link:hover
 {
     font-style: none;
     text-decoration: none;
-    color: black;
+    color: white;
 }
 
 .left-list
@@ -23,22 +23,27 @@
     list-style-type:none;
     text-align: left;
     padding-left: 0px;
-    border:2px solid gray;
+    border:1px solid gray;
     border-left: none;
     border-top: none;
+    border-right: none;
 }
 .left-list-item
 {
     padding-top: 5px;
     padding-bottom: 5px;
     padding-left: 10px;
-    border:1px solid gray;
+    background-color:#fb8521;
+    color: white;
+    border:1px solid whitesmoke;
     border-left: none;
     border-right: none;
     border-top: none;
 }
 .item-last
 {
+    background-color: whitesmoke;
+    color: black;
     border-bottom: none;
 }
 .item-header
@@ -47,6 +52,7 @@
     border-top: none;
     padding-bottom: 0px;
     text-align: center;
+    background-color: whitesmoke;
     padding-left: 0px;
 }
 
@@ -61,6 +67,35 @@
     text-align: left;
     border: 1px solid gray;
     border-top: none;
+    border-left: none;
+    border-right: none;
+}
+.chat-before
+{
+    position: relative;
+    width: 555px;
+    min-height:35px;
+    padding: 4px;
+    font-size: large;
+    font-weight: 300;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    color:#fb8521;
+    background: #F5F5F5;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px
+}
+.namechange-button
+{
+    background-color: #fb8521;
+    color: white;
+}
+.namechange-button:hover
+{
+    background-color: #fb8521;
+    color: white;
 }
 .chat-header-text
 {
@@ -83,8 +118,17 @@
     padding-bottom: 5px;
     position: absolute;
     bottom:0;
-    background-color: whitesmoke;
     left:0;
+}
+.chat-spalsh-info
+{
+    color: black;
+    font-weight: 300;
+}
+.chat-splash-field-tag
+{
+    color: black;
+    font-weight: 300;
 }
 .start-chat-button
 {
@@ -133,6 +177,8 @@
     width: 60%;
     position:relative;
     height:100%;
+    border: 1px solid gray;
+    border-top: none;
 }
 .brand
 {
@@ -170,7 +216,7 @@
     height:100%;
     width:15%;
     background-color: #fb8521;
-    font-weight: 100;
+    font-weight: 400;
     font-size: 1.5em;
     color:white;
     padding:5px;

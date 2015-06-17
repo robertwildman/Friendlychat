@@ -41,7 +41,8 @@ $(document).ready(function() {
 			startnewroom();
 		}
 		});
-	$('#splashmodal').modal('show');
+	$('#endchat').hide();
+	$('#chat-header-text').text('Welcome to Helping Chat!');
 });
 
 
@@ -61,7 +62,7 @@ function startnewroom() {
 				userconnected = true;
 				socket.emit('adduser',data.roomaddress,data.username,$('#issue').text(),data.roomstatus);
 			}
-			//This will display 2 buttons and remove the staret chatting button
+			//This will display 2 buttons and remove the start chatting button
 			//First button is View Person Second is new Person
 			$(".startchatbutton").remove();
 		}

@@ -37,30 +37,31 @@
 <div class="maincontainer">
   <div class="column-center">
     <div class="chat-header">
-      <h4 class="chat-header-text">You are chatting to: </h4>
-      <input type="button" id="startchat" class="btn start-chat-button lightcoral pull-right" value="New Person" />
+      <h4 class="chat-header-text" id="chat-header-text">You are chatting to: </h4>
+      <input type="button" id="endchat" class="btn start-chat-button lightcoral pull-right" value="End Chat" />
     </div>
     <div class="chat-body" id ="chat" >
-        <div class="chat-before helpingchatbubble">
-          <h4>Hello, We ask that you enter in a name that you wish to be called and also a little bit about how your current feeling so the other person has a small idea to start chatting about it.</h4>
-        </div>
-        <div class="chat-before helpingchatbubble">
+      <div class="chat-before">
+          <h4 class="chat-spalsh-info">Hello, We ask that you enter in a name that you wish to be called and also a little bit about how your current feeling so the other person has a small idea so they can start chatting about it.</h4>
+
+        <div>
           <%= form_tag(changeboth_path, method: "Post" ,:remote => true) do %>
-        <div class = "form-group">
-          <h4 class="pull-left">Name:</h4>
-          <%= text_field_tag :name,@name, :required => true,:placeholder => "Enter Name",:id => "chat_username_input",:class => 'form-control'%>
-          <br>
-          <h4 class="pull-left">Feeling:</h4>
-          <%= text_field_tag :issue,@issue, :required => true,:placeholder => "Enter your feelings",:id => "chat_issue_input",:class => 'form-control'%>
+            <div class = "form-group">
+              <h4 class="chat-splash-field-tag pull-left">Name:</h4>
+              <%= text_field_tag :name,@name, :required => true,:placeholder => "Enter Name",:id => "chat_username_input",:class => 'form-control'%>
+              <br>
+              <h4 class="chat-splash-field-tag pull-left">How your feeling:</h4>
+              <%= text_field_tag :issue,@issue, :required => true,:placeholder => "Enter your feelings",:id => "chat_issue_input",:class => 'form-control'%>
+            </div>
+           <%= submit_tag "Start Chatting",:class => 'btn btn-lg btn-block btn-default namechange-button add-topic-btn',:id => "startchatting"%>
+          <% end %>
         </div>
-         <%= submit_tag "Start Chatting.",:class => 'btn btn-lg btn-block btn-default namechange-button add-topic-btn',:id => "startchatting"%>
-        <% end %>
-        </div>
+         </div>
     </div>
     <div class="chat-footer">
         <div class="chat-input-div">
         <textarea id="messagetextinput" class="message chat_message"> </textarea>
-        <input type="button" id="messagesend" class="btn chat-button  cadetblue pull-right " value="Send" />
+        <input type="button" id="messagesend" class="btn chat-button  pull-right " value="Send" />
         </div>
     </div>
   </div>
