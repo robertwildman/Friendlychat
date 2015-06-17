@@ -140,6 +140,8 @@
 .chat-header-text
 {
     max-width: 250px;
+    font-weight: 200;
+    font-size: x-large;
 }
 .left-info
 {
@@ -182,6 +184,7 @@
     font-size: 1.5em;
     color:white;
     padding:5px;
+    white-space: normal;
 }
 .lightcoral
 {
@@ -352,6 +355,16 @@ body
     }
     .column-right{
        display:none;
+    }
+    .chat-button
+    {
+        width:22%;
+        padding-left: 1px;
+        padding-right: 1px;
+    }
+    .chat_message
+    {
+        width:55%;
     }
     .column-center{
         display: inline-block;
