@@ -3,8 +3,26 @@ class MessagesController < ApplicationController
 
   def getstartinfo
     #This will return all the starting infomation needed.
-    current_user = User.where(:user_id => session[:id]).first
-    @name = current_user.user_name
+    if(session[:id].nil? == true)
+      temp_user_id = get_user_id
+      temp_username = "Helpuser " + temp_user_id.to_s
+      session[:id] = temp_user_id
+      session[:name] = "User " + temp_user_id.to_s
+      User.create(user_id: temp_user_id ,user_free: false,user_name: temp_username)
+      current_user = User.where(:user_id => session[:id]).first
+    else
+      current_user = User.where(:user_id => session[:id]).first
+      if current_user.nil?
+        temp_user_id = get_user_id
+        session[:id] = temp_user_id
+        if session[:issue].nil?
+          User.create(user_id: temp_user_id ,user_free: false,user_name: session[:name])
+        else
+          User.create(user_id: temp_user_id ,user_free: false,user_name: session[:name],user_issue: session[:issue])
+        end
+        current_user = User.where(:user_id => session[:id]).first
+      end
+      @name = current_user.user_name
     #Will find if there is a free room or not
     free_users = User.where(:user_free =>  true)
     if free_users.count == 1
@@ -36,7 +54,9 @@ class MessagesController < ApplicationController
     end
         @roominfo = Room.new(session[:room],current_user.user_name,roomstatus)
         respond_with @roominfo
-  end
+      end
+
+    end
     def index
       if(session[:id].nil? == true)
         temp_user_id = get_user_id
@@ -115,15 +135,7 @@ class MessagesController < ApplicationController
    current_user = User.where(:user_id => session[:id])
    current_user.first.remove
  end
- def changeboth
-  current_user = User.where(:user_id => session[:id])
-  current_user.first.update(user_name: params[:name])
-  current_user.first.update(user_issue: params[:issue])
-  session[:issue] = current_user.first.user_issue
-  @name = current_user.first.user_name
-  session[:name] = current_user.first.user_name
-  render :nothing => true
- end
+
  def changename
   current_user = User.where(:user_id => session[:id])
   current_user.first.update(user_name:params[:name])
