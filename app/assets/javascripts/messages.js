@@ -27,18 +27,21 @@ $(document).ready(function() {
 			}
 		});
 		$('.pickiconcircle').click(function() {
-			$('.pickiconcircle').removeClass().addClass('pickcircle pickiconcircle');
 			$('#currentprofilepicture').removeClass();
 			var selectedicon =  this.id;
 			var selectedcolor = $('.pickcolorselected').attr('id');
+			$('.pickiconcircle').removeClass().addClass('pickcircle pickiconcircle ' + selectedcolor);
 			$('#'+selectedicon).addClass('pickiconselected');
 			$('#currentprofilepicture').addClass('pickcircle '+selectedicon+' '+selectedcolor);
+
 		});
 		$('.pickcolorcircle').click(function() {
 			$('.pickcolorcircle').removeClass().addClass('pickcircle pickcolorcircle');
 			$('#currentprofilepicture').removeClass();
 			var selectedcolor =  this.id;
 			var selectedicon = $('.pickiconselected').attr('id');
+			$('.pickiconcircle').removeClass().addClass('pickcircle pickiconcircle ' + selectedcolor);
+			$('#'+selectedicon).addClass('pickiconselected');
 			$('#'+selectedcolor).addClass('pickcolorselected');
 			$('#currentprofilepicture').addClass('pickcircle '+selectedicon+' '+selectedcolor);
 		});
