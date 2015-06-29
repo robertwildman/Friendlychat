@@ -18,6 +18,10 @@
 {
     text-align: center;
 }
+.modal-body
+{
+    overflow: auto;
+}
 /* This is for the Pick Profile Modal */
 .pickbox
 {
@@ -81,6 +85,29 @@
     float: left;
     border-bottom: 1px solid #9E9E9E;
 }
+.save-pic-btn
+{
+    background-color: #3949AB;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: large;
+    font-weight: 200;
+}
+.save-pic-btn:hover
+{
+    background-color: #3949AB;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: large;
+    font-weight: 200;
+}
+
+
+
+
+
+
+
 /* Colors and Icons for profile */
 #pickcolor_red
 {
