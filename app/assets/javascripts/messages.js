@@ -43,9 +43,9 @@ $(document).ready(function() {
 			$('.pickiconcircle').removeClass().addClass('pickcircle pickiconcircle ' + selectedcolor);
 			$('#'+selectedicon).addClass('pickiconselected');
 			$('#'+selectedcolor).addClass('pickcolorselected');
+			$('.pickiconcircle').addClass(selectedcolor);
 			$('#currentprofilepicture').addClass('pickcircle '+selectedicon+' '+selectedcolor);
 		});
-    $('#Pickprofilepic').modal('show');
 });
 
 
