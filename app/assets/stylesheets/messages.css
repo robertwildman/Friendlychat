@@ -1,70 +1,121 @@
 /* Default Modal */
-    .modal-header
-    {
-        background-color: #fb8521;
-        color:white;
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
-    }
-    .modal-left
-    {
-      width: 400px;
-      height: 300px;
-      float: left;
-      display: block;
-      margin-left: -60%;
-    }
-    .text-center
-    {
-        text-align: center;
-    }
-    .modal-body
-    {
-        overflow: auto;
-    }
+.modal-header
+{
+    background-color: #fb8521;
+    color:white;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.modal-left
+{
+  width: 400px;
+  height: 300px;
+  float: left;
+  display: block;
+  margin-left: -60%;
+}
+.text-center
+{
+    text-align: center;
+}
+.modal-body
+{
+    overflow: auto;
+}
+/* Defaults */
+.brand
+{
+    font-family: 'Comfortaa', cursive;
+    font-size: 35px;
+    color: #fb8521 !important;
+}
 /* This is for the Pick Profile Modal */
-    #Pickprofilepic
-    {
-        float: right;
-    }
-    .pickbox
-    {
-        width: 85%;
-        text-align: center;
-        height: 270px;
-        text-align: center;
-        padding-top: 20px;
-        margin: 0 auto;
-    }
-    .pickcircle
-    {
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        display: inline-block;
-        margin-left: 10px;
-        background-color: #f5f5f5;
-    }
-    .pickiconselected
-    {
-        border:4px solid black;
-    }
-    .pickcolorselected
-    {
-        border:4px solid black;
-    }
-    .pickcolorcircle:hover
-    {
-        border:4px solid black;
-    }
-    .pickiconcircle:hover
-    {
-        border:4px solid black;
-    }
-    .pickboxmain
-    {
+.pickbox
+{
+    width: 85%;
+    text-align: center;
+    height: 270px;
+    text-align: center;
+    padding-top: 20px;
+    margin: 0 auto;
+}
+.pickcircle
+{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 10px;
+    background-color: #f5f5f5;
+}
+.pickiconselected
+{
+    border:4px solid black;
+}
+.pickcolorselected
+{
+    border:4px solid black;
+}
+.pickcolorcircle:hover
+{
+    border:4px solid black;
+}
+.pickiconcircle:hover
+{
+    border:4px solid black;
+}
+.pickboxmain
+{
 
-    }
+}
+.pickprofilepic
+{
+
+}
+.pick-header
+{
+    background-color: #3949AB;
+}
+.pick-title
+{
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: x-large;
+    font-weight: 100;
+}
+.icontext
+{
+    font-family: 'Roboto', sans-serif;
+    font-size: medium;
+    font-weight: 300;
+    margin-top: -10px;
+    float: left;
+    border-bottom: 1px solid #9E9E9E;
+}
+.save-pic-btn
+{
+    background-color: #3949AB;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: large;
+    font-weight: 200;
+}
+.save-pic-btn:hover
+{
+    background-color: #3949AB;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: large;
+    font-weight: 200;
+}
+.yourprofilecircle
+{
+    float: left;
+    width: 75px;
+    height:75px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
     .pickprofilepic
     {
 
@@ -372,7 +423,35 @@
         border-right: 6px solid transparent;
         border-left: 6px solid transparent
     }
-
+/* column info */
+.column-left{
+    float: left;
+    text-align: center;
+    width: 25%;
+    height:100%;
+}
+.column-right{
+    float: right;
+    width: 10%;
+    height:100%;
+}
+.column-center{
+    display: inline-block;
+    width: 60%;
+    position:relative;
+    height:100%;
+    background-color: white;
+}
+.top-left
+{
+    width: 100%;
+    height: 15%;
+}
+.left-brand
+{
+    padding-top: 10px;
+    font-size: 50px;
+}
 
 .center{
 	margin: 0 auto;
@@ -424,7 +503,6 @@
 }
 .maincontainer
 {
-    margin-top: -10px;
     width:100%;
     display:block;
     height:100%;
@@ -434,66 +512,16 @@
 {
     display:none;
 }
-.column-left{
-    float: left;
-    text-align: center;
-    width: 25%;
-    height:100%;
-}
-.column-right{
-    float: right;
-    width: 10%;
-    height:100%;
-}
-.column-center{
-    display: inline-block;
-    width: 65%;
-    position:relative;
-    height:100%;
-    border-radius: 10px;
-    border: 20px solid cadetblue;
-    background-color: white;
-}
+
 .adsbygoogle
 {
     margin-top: 20px;
-}
-.navbar
-{
-   background-color: white;
-   color: #FFAE19;
-}
-.navbar-header
-{
-   background-color: whitesmoke;
-   color: #FFAE19;
-   float:none;
-}
-.navbar-brand
-{
-    color:white;
-    margin: 0 auto;
-    font-size: 10;
-    padding-left:45%;
-}
-.navbar-default
-{
-    color:#fb8521;
-}
-.navbar
-{
-    background-color: whitesmoke;
-    border: none;
 }
 .brand
 {
     font-family: 'Comfortaa', cursive;
     font-size: 35px;
     color: white !important;
-}
-.nav-link{
-
-    color:white;
 }
 .mastfoot
 {
